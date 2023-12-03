@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField';
 
 export default function Home() {
   return (
-      <div className='flex justify-center w-full mt-5'>
+      <div className='flex justify-center w-full my-10'>
           <div className='grid gap-y-8'>
               <div className='grid gap-x-24 grid-cols-3'>
                   <TextField
