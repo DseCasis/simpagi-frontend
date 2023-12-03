@@ -12,6 +12,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import Button from '@mui/material/Button';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function Home() {
 
@@ -381,6 +384,16 @@ export default function Home() {
                           <MenuItem value={3}>Opcion 3</MenuItem>
                       </Select>
                   </FormControl>
+              </div>
+              <div className='flex justify-center space-x-8 h-14 mt-10'>
+                  <Button className='bg-red-500 w-1/3 space-x-2' variant="contained" color="error">
+                      <CloseIcon/>
+                      <a>Cancelar</a>
+                  </Button>
+                  <Button className='bg-green-700 w-1/3 space-x-2' variant="contained" color="success">
+                      <CheckRoundedIcon/>
+                      <a>Aceptar</a>
+                  </Button>
               </div>
           </div>
       </div>
