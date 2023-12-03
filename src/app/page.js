@@ -1,6 +1,25 @@
+"use client"
+
+import React from 'react';
 import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 
 export default function Home() {
+
+    // const age = 0;
+
+    const handleChange = (event) => {
+       console.log('a')
+    };
   return (
       <div className='flex justify-center w-full my-10'>
           <div className='grid gap-y-8'>
@@ -8,168 +27,360 @@ export default function Home() {
                   <TextField
                       label="Nombres"
                       id="outlined-size-small"
-                      size="small"
                   />
-                  <TextField
-                      label="Formacion Academica"
-                      id="outlined-size-small"
-                      size="small"
-                  />
-                  <TextField
-                      label="Grupo Etnico"
-                      id="outlined-size-small"
-                      size="small"
-                  />
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Formacion Academica</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Grupo Etnico</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
               </div>
               <div className='grid gap-x-24 grid-cols-3'>
                   <TextField
                       label="Apellidos"
                       id="outlined-size-small"
-                      size="small"
+                      
                   />
-                  <TextField
-                      label="Nacionalidad"
-                      id="outlined-size-small"
-                      size="small"
-                  />
-                  <TextField
-                      label="Sexo"
-                      id="outlined-size-small"
-                      size="small"
-                  />
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Nacionalidad</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Sexo</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
               </div>
               <div className='grid gap-x-24 grid-cols-3'>
-                  <TextField
-                      label="Grupo Prioritario"
-                      id="outlined-size-small"
-                      size="small"
-                  />
-                  <TextField
-                      label="Tipo Cuarto Nivel"
-                      id="outlined-size-small"
-                      size="small"
-                  />
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Grupo Prioritario</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Tipo Cuarto Nivel</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
               </div>
               <div className='grid gap-x-24 grid-cols-3'>
-                  <TextField
-                      label="Fecha de Nacimiento"
-                      id="outlined-size-small"
-                      size="small"
-                  />
-                  <TextField
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={['DatePicker']}>
+                          <DatePicker label="Fecha de Nacimiento" />
+                      </DemoContainer>
+                  </LocalizationProvider>
+                  <FormControlLabel
+                      value="end"
+                      control={<Switch color="primary" />}
                       label="Migrante Retornado"
-                      id="outlined-size-small"
-                      size="small"
+                      labelPlacement="end"
                   />
+
                   <TextField
                       label="Titulo Academico"
                       id="outlined-size-small"
-                      size="small"
+                      
                   />
               </div>
-              <div className='grid gap-x-24 grid-cols-4'>
-                  <TextField
-                      label="Localidad Asociada"
-                      id="outlined-size-small"
-                      size="small"
-                  />
-                  <TextField
-                      label="Localidad Laboral"
-                      id="outlined-size-small"
-                      size="small"
-                  />
-                  <TextField
-                      label="Provincia"
-                      id="outlined-size-small"
-                      size="small"
-                  />
-                  <TextField
-                      label="Canton"
-                      id="outlined-size-small"
-                      size="small"
-                  />
+              <div className='grid gap-x-10 grid-cols-4'>
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Localidad Asociada</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Localidad Laboral</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Provincia</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Canton</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
               </div>
               <div className='grid gap-x-24 grid-cols-3'>
-                  <TextField
-                      label="Origen Fondo"
-                      id="outlined-size-small"
-                      size="small"
-                  />
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Origen Fondo</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
                   <TextField
                       label="Remuneracion"
                       id="outlined-size-small"
-                      size="small"
                   />
-                  <TextField
-                      label="Fondos"
-                      id="outlined-size-small"
-                      size="small"
-                  />
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Fondos</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
               </div>
               <div className='grid gap-x-24 grid-cols-3'>
                   <TextField
                       label="Telefono Institucional"
                       id="outlined-size-small"
-                      size="small"
+                      
                   />
                   <TextField
                       label="Correo Institucional"
                       id="outlined-size-small"
-                      size="small"
+                      
                   />
-                  <TextField
-                      label="Viatico Recidencial"
-                      id="outlined-size-small"
-                      size="small"
-                  />
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Viatico Recidencial</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
               </div>
               <div className='grid gap-x-24 grid-cols-3'>
                   <TextField
                       label="Extencion Institucional"
                       id="outlined-size-small"
-                      size="small"
+                      
                   />
               </div>
               <div className='grid gap-x-24 grid-cols-3'>
-                  <TextField
-                      label="Puesto"
-                      id="outlined-size-small"
-                      size="small"
-                  />
-                  <TextField
-                      label="Fecha de Ingreso"
-                      id="outlined-size-small"
-                      size="small"
-                  />
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Puesto</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={['DatePicker']}>
+                          <DatePicker label="Fecha de Ingreso" />
+                      </DemoContainer>
+                  </LocalizationProvider>
                   <TextField
                       label="Numero de Umposiciones"
                       id="outlined-size-small"
-                      size="small"
+                      
                   />
               </div>
               <div className='grid gap-x-24 grid-cols-3'>
-                  <TextField
-                      label="Partida Ocupada"
-                      id="outlined-size-small"
-                      size="small"
-                  />
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Partida Ocupada</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
               </div>
               <div className='grid gap-x-24 grid-cols-3'>
                   <TextField
                       label="Numero de Registro Senecyt"
                       id="outlined-size-small"
-                      size="small"
+                      
                   />
                   <TextField
                       label="Actividad esigef"
                       id="outlined-size-small"
-                      size="small"
+                      
                   />
-                  <TextField
-                      label="Proceso"
-                      id="outlined-size-small"
-                      size="small"
-                  />
+                  <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">Proceso</InputLabel>
+                      <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          // value={age}
+                          label="Age"
+                          // onChange={handleChange}
+                      >
+                          <MenuItem value="">
+                              <em>Ninguna</em>
+                          </MenuItem>
+                          <MenuItem value={1}>Opcion 1</MenuItem>
+                          <MenuItem value={2}>Opcion 2</MenuItem>
+                          <MenuItem value={3}>Opcion 3</MenuItem>
+                      </Select>
+                  </FormControl>
               </div>
           </div>
       </div>
