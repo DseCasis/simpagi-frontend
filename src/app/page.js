@@ -12,7 +12,7 @@ export default function Home(){
     return(
         <div>
             <Menu></Menu>
-            <div className="flex justify-center items-center mt-20">
+            <div className="space-y-8 flex justify-center flex-col items-center mt-20">
                 <div className="grid grid-cols-3 gap-12">
                     <div className="w-52 text-center">
                         <img src="/investigacion.png" alt=""/>
@@ -26,6 +26,8 @@ export default function Home(){
                         <img src="/responsable.png" alt=""/>
                         <p className="">RESPONSABLE</p>
                     </div>
+                </div>
+                <div className="">
                     <div className="w-52 text-center">
                         <img src="/director_central.png" alt=""/>
                         <p className="">DIRECTOR CENTRAL</p>
