@@ -30,7 +30,7 @@ export default function UserLogin(){
                     <a>Olvidaste la contrasenha?</a>
                 </div>
                 <div className="w-1/2 rounded-r-md bg-red-500">
-                    <img className="w-full h-full object-cover rounded-r-md" src="/trigo.jpg" alt=""/>
+                    <img className="w-full h-full object-cover rounded-r-md" src="/trigo.png" alt=""/>
                 </div>
             </div>
         </div>
