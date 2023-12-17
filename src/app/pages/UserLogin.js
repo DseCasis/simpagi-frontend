@@ -16,18 +16,18 @@ export default function UserLogin(){
                     <a className="text-gray-400">Por favor ingrese sus credenciales</a>
                     <form className="w-full space-y-4 flex flex-col justify-center pb-8">
                         <TextField
-                            label="Usuario"
+                            label="Correo electronico"
                             id="outlined-size-small"
                         />
                         <TextField
-                            label="Contrasenha"
+                            label="Contraseña"
                             id="outlined-size-small"
                         />
                     </form>
                     <Button className='bg-blue-900 p-3' variant="contained" disableElevation size="large">
-                        Aceptar
+                        Ingresar
                     </Button>
-                    <a>Olvidaste la contrasenha?</a>
+                    <a>¿Olvidaste la contraseña?</a>
                 </div>
                 <div className="w-1/2 rounded-r-md bg-red-500">
                     <img className="w-full h-full object-cover rounded-r-md" src="/trigo.png" alt=""/>

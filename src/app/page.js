@@ -1,14 +1,15 @@
 "use client"
 
 import React from "react";
-import UserLogin from "@/app/views/UserLogin";
+import Listado from "@/app/components/Listado";
+
 
 export default function Home(){
 
 
     return(
-        <div>
-            <UserLogin/>
+        <div className="App">
+            <Listado></Listado>
         </div>
     )
 }

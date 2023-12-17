@@ -16,10 +16,10 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import React from "react";
 
-export default function RegisterForm() {
+export default function Page() {
 
     return (
-        <div className='flex justify-center w-full my-10'>
+        <form className='flex justify-center w-full my-10'>
             <div className='grid gap-y-8'>
                 <div className='grid gap-y-8 m rounded border-2 border-gray-300 p-10'>
                     <div className='grid gap-x-24 grid-cols-3'>
@@ -160,7 +160,7 @@ export default function RegisterForm() {
                     </div>
                 </div>
                 <div className='grid gap-y-8 m rounded border-2 border-gray-300 p-10'>
-                    <div className='grid gap-x-10 grid-cols-4'>
+                    <div className='grid gap-x-10 grid-cols-3'>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Localidad Asociada</InputLabel>
                             <Select
@@ -197,23 +197,6 @@ export default function RegisterForm() {
                         </FormControl>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Provincia</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                // value={age}
-                                label="Age"
-                                // onChange={handleChange}
-                            >
-                                <MenuItem value="">
-                                    <em>Ninguna</em>
-                                </MenuItem>
-                                <MenuItem value={1}>Opcion 1</MenuItem>
-                                <MenuItem value={2}>Opcion 2</MenuItem>
-                                <MenuItem value={3}>Opcion 3</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Canton</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
@@ -403,6 +386,6 @@ export default function RegisterForm() {
                     </Button>
                 </div>
             </div>
-        </div>
+        </form>
     )
 }
