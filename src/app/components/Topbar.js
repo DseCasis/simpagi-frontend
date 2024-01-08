@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 
-export default function Componente(){
+export default function Topbar(){
 
     const [dropdown1Visible, setDropdown1Visible] = useState(false);
     const [dropdown2Visible, setDropdown2Visible] = useState(false);
