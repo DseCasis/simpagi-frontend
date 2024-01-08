@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react";
-import Componente from "./components/Componente";
+import Topbar from "./components/Topbar";
 
 
 export default function Home(){
@@ -10,7 +10,7 @@ export default function Home(){
     return(
         <div className="App">
             
-            <Componente></Componente>
+            <Topbar></Topbar>
         
         </div>
     )
