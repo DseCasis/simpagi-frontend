@@ -2,7 +2,7 @@
 
 
 import TextField from "@mui/material/TextField";
-import React from "react";
+
 import Button from "@mui/material/Button";
 
 export default function UserLogin(){
@@ -25,7 +25,7 @@ export default function UserLogin(){
                         />
                     </form>
                     <Button className='bg-blue-900 p-3' variant="contained" disableElevation size="large">
-                        Ingresar
+                    Ingresar
                     </Button>
                     <a>¿Olvidaste la contraseña?</a>
                 </div>

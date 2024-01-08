@@ -12,7 +12,7 @@ const Listado = () => {
 
   return (
     <div>
-        <h1>Listado de usuarios</h1>
+        <h1>Listado usuarios</h1>
         <ul>
             {users.map((user) => (
             <li key={user.id}>
