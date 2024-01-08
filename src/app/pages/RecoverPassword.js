@@ -21,7 +21,7 @@ export default function RecoverPassword(){
                         />
                     </form>
                     <Button className='bg-blue-900 p-3' variant="contained" disableElevation size="large">
-                        Recuperar contranha
+                        Recuperar contranha 112
                     </Button>
                     <a>Iniciar sesion?</a>
                 </div>

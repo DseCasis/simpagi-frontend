@@ -11,15 +11,15 @@ export default function UserLogin(){
         <div className="flex flex-wrap min-h-screen w-full content-center justify-center py-10">
             <div className="w-2/4 h-5/6 flex justify-center border-2 rounded-md border-black bg-gray-200 ">
                 <div className="w-1/2 flex flex-col p-12 space-y-4">
-                    <h1 className="text-xl font-semibold pb-8">Sistema Simplificado de Planificacion y Gestion de la investigacion</h1>
-                    <a className="text-gray-400">Por favor ingrese sus credenciales</a>
+                    <h1 className="flex-1 text-xl font-semibold pb-8">Sistema Simplificado de Planificacion y Gestion de la investigacion</h1>
+                    <a className="text-gray-400" >Por favor ingrese sus credenciales</a>
                     <form className="w-full space-y-4 flex flex-col justify-center pb-8">
                         <TextField
                             label="Correo electronico"
                             id="outlined-size-small"
                         />
                         <TextField
-                            label="Contraseña"
+                            label="Contraseña123"
                             id="outlined-size-small"
                         />
                     </form>
