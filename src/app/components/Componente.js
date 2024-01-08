@@ -52,8 +52,8 @@ export default function Componente(){
     return (
       <div className="bg-gray-800 text-white w-full">
         <div className="container mx-auto flex items-center justify-between py-6">
-          <nav className="space-x-9 text-center">
-
+          <nav className="flex-1 space-x-9 text-center">
+          
             <div className="relative inline-block text-left">
               <button
                 onClick={toggleDropdown1}
