@@ -21,12 +21,15 @@ export default function Page() {
     return (
         <form className='flex justify-center w-full my-10'>
             <div className='grid gap-y-8'>
+                
+                
                 <div className='grid gap-y-8 m rounded border-2 border-gray-300 p-10'>
                     <div className='grid gap-x-24 grid-cols-3'>
                         <TextField
                             label="Nombres"
                             id="outlined-size-small"
-                        />
+                        />          
+
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Formacion Academica</InputLabel>
                             <Select
@@ -37,13 +40,14 @@ export default function Page() {
                                 // onChange={handleChange}
                             >
                                 <MenuItem value="">
-                                    <em>Ninguna</em>
+                                    <em>Ninguna</em>  
                                 </MenuItem>
                                 <MenuItem value={1}>Opcion 1</MenuItem>
                                 <MenuItem value={2}>Opcion 2</MenuItem>
                                 <MenuItem value={3}>Opcion 3</MenuItem>
                             </Select>
                         </FormControl>
+                       
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Grupo Etnico</InputLabel>
                             <Select
@@ -66,7 +70,6 @@ export default function Page() {
                         <TextField
                             label="Apellidos"
                             id="outlined-size-small"
-
                         />
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Nacionalidad</InputLabel>
@@ -151,14 +154,16 @@ export default function Page() {
                             label="Migrante Retornado"
                             labelPlacement="end"
                         />
-
-                        <TextField
+                       <TextField
                             label="Titulo Academico"
                             id="outlined-size-small"
 
                         />
                     </div>
                 </div>
+
+                
+                
                 <div className='grid gap-y-8 m rounded border-2 border-gray-300 p-10'>
                     <div className='grid gap-x-10 grid-cols-3'>
                         <FormControl fullWidth>
@@ -214,6 +219,9 @@ export default function Page() {
                         </FormControl>
                     </div>
                 </div>
+                
+                
+                
                 <div className='grid gap-y-8 m rounded border-2 border-gray-300 p-10'>
                     <div className='grid gap-x-24 grid-cols-3'>
                         <FormControl fullWidth>
@@ -256,6 +264,9 @@ export default function Page() {
                         </FormControl>
                     </div>
                 </div>
+                
+                
+                
                 <div className='grid gap-y-8 m rounded border-2 border-gray-300 p-10'>
                     <div className='grid gap-x-24 grid-cols-3'>
                         <TextField
@@ -294,6 +305,9 @@ export default function Page() {
                         />
                     </div>
                 </div>
+                
+                
+                
                 <div className='grid gap-y-8 m rounded border-2 border-gray-300 p-10'>
                     <div className='grid gap-x-24 grid-cols-3'>
                         <FormControl fullWidth>
@@ -344,17 +358,18 @@ export default function Page() {
                         </LocalizationProvider>
                     </div>
                 </div>
+
+
                 <div className='grid gap-y-8 m rounded border-2 border-gray-300 p-10'>
                     <div className='grid gap-x-24 grid-cols-3'>
                         <TextField
                             label="Numero de Registro Senecyt"
                             id="outlined-size-small"
-
                         />
+                        
                         <TextField
                             label="Actividad esigef"
                             id="outlined-size-small"
-
                         />
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Proceso</InputLabel>
