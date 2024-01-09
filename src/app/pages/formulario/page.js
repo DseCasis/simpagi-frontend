@@ -25,43 +25,43 @@ export default function Formulario() {
           </div>
 
           <div class="flex items-center">
-            <label for="formacionAcademica" class="mr-2 text-green-500">Formacion Academica</label>
+            <label for="formacionAcademica" class="mr-2 text-green-500">Formacion Académica</label>
             <select id="formacionAcademica" name="formacionAcademica" class="w-full p-2 border rounded">
-              <option value="formacionAcademicaUno">Provincia 1</option>
-              <option value="formacionAcademicaDos">Provincia 2</option>
-              <option value="formacionAcademicaTres">Provincia 3</option>
+              <option value="formacionAcademicaUno">Colegio</option>
+              <option value="formacionAcademicaDos">Bachillerato</option>
+              <option value="formacionAcademicaTres">Universitario</option>
             </select>
           </div>
 
           <div class="flex items-center">
-            <label for="grupoEtnico" class="mr-2 text-green-500">Grupo Etnico:</label>
+            <label for="grupoEtnico" class="mr-2 text-green-500">Grupo Étnico:</label>
             <select id="grupoEtnico" name="grupoEtnico" class="w-full p-2 border rounded">
-              <option value="provinciaUno">Provincia 1</option>
-              <option value="provinciaDos">Provincia 2</option>
-              <option value="provinciaTres">Provincia 3</option>
+              <option value="provinciaUno">Mestiza</option>
+              <option value="provinciaDos">Afroecuatoriana</option>
+              <option value="provinciaTres">Indígena</option>
             </select>
           </div>
 
           <div class="flex items-center">
-            <label for="apellido" class="mr-2 text-green-500">Apellido:</label>
+            <label for="apellido" class="mr-2 text-green-500">Apellidos:</label>
             <input type="text" id="apellido" name="apellido" class="w-full border-gray-300 border rounded-md py-2 px-3 text-gray-700"></input>
           </div>
 
           <div class="flex items-center">
             <label for="nacionalidad" class="mr-2 text-green-500">Nacionalidad:</label>
             <select id="nacionalidad" name="nacionalidad" class="w-full p-2 border rounded">
-              <option value="nacionalidadUno">Provincia 1</option>
-              <option value="nacionalidadDos">Provincia 2</option>
-              <option value="nacionalidadTres">Provincia 3</option>
+              <option value="nacionalidadUno">Ecuatoriano</option>
+              <option value="nacionalidadDos">Colombiano</option>
+              <option value="nacionalidadTres">Peruano</option>
             </select>
           </div>
 
           <div class="flex items-center">
             <label for="sexo" class="mr-2 text-green-500">Sexo:</label>
             <select id="sexo" name="sexo" class="w-full p-2 border rounded">
-              <option value="sexoUno">Provincia 1</option>
-              <option value="sexoDos">Provincia 2</option>
-              <option value="sexoTres">Provincia 3</option>
+              <option value="sexoUno">Masculino</option>
+              <option value="sexoDos">Femenino</option>
+              <option value="sexoTres">Otros</option>
             </select>
           </div>
 
@@ -71,12 +71,13 @@ export default function Formulario() {
           </div>
 
           <div class="flex items-center">
-            <label for="tipoCuartoNivel" class="mr-2 text-green-500">Tipo Cuarto Nivel:</label>
-            <input type="text" id="tipoCuartoNivel" name="tipoCuartoNivel" class="w-full border-gray-300 border rounded-md py-2 px-3 text-gray-700"></input>
-          </div>
-
+              <label for="tipoCuartoNivel" class="mr-2 text-green-500">Tipo Cuarto Nivel:</label>
+              <select id="tipoCuartoNivel" name="tipoCuartoNivel" class="w-full p-2 border rounded">
+                <option value="tipoCuartoNivel">N/A</option>
+                <option value="tipoCuartoNivel">Si</option>
+              </select>
+            </div>
           <div></div>
-
           <div class="flex items-center">
             <label for="fechaNacimiento" class="mr-2 text-green-500">Fecha de Nacimiento:</label>
             <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="w-full border-gray-300 border rounded-md py-2 px-3 text-gray-700"></input>
@@ -96,36 +97,36 @@ export default function Formulario() {
             <div class="flex items-center">
               <label for="localidadAsosiada" class="mr-2 text-green-500">Localidad Asosiada:</label>
               <select id="localidadAsosiada" name="localidadAsosiada" class="w-full p-2 border rounded">
-                <option value="localidadAsosiadaUno">Provincia 1</option>
-                <option value="localidadAsosiadaDos">Provincia 2</option>
-                <option value="localidadAsosiadaTres">Provincia 3</option>
+                <option value="localidadAsosiadaUno">ADM Central</option>
+                <option value="localidadAsosiadaDos">ADM Ejemplo</option>
+                <option value="localidadAsosiadaTres">ADM Ejemplo</option>
               </select>
             </div>
 
             <div class="flex items-center">
               <label for="localidadLaboral" class="mr-2 text-green-500">Localidad Laboral</label>
               <select id="localidadLaboral" name="localidadLaboral" class="w-full p-2 border rounded">
-                <option value="localidadLaboralUno">Provincia 1</option>
-                <option value="localidadLaboralDos">Provincia 2</option>
-                <option value="localidadLaboralTres">Provincia 3</option>
+                <option value="localidadLaboralUno">AV. ELOY ALFARO N30-350 Y AV. AMAZONAS</option>
+                <option value="localidadLaboralDos">AV. MARIANA DE JESUS Y AV. 10 AGOSTO</option>
+                <option value="localidadLaboralTres">AV. EJEMPLO</option>
               </select>
             </div>
 
             <div class="flex items-center">
               <label for="provincia" class="mr-2 text-green-500">Provincia:</label>
               <select id="provincia" name="provincia" class="w-full p-2 border rounded">
-                <option value="provinciaUno">Provincia 1</option>
-                <option value="provinciaDos">Provincia 2</option>
-                <option value="provinciaTres">Provincia 3</option>
+                <option value="provinciaUno">Pichincha</option>
+                <option value="provinciaDos">Guayaquill</option>
+                <option value="provinciaTres">Cuenca</option>
               </select>
             </div>
 
             <div class="flex items-center">
-              <label for="canton" class="mr-2 text-green-500">Canton:</label>
+              <label for="canton" class="mr-2 text-green-500">Cantón:</label>
               <select id="canton" name="canton" class="w-full p-2 border rounded">
-                <option value="cantonUno">Provincia 1</option>
-                <option value="cantonDos">Provincia 2</option>
-                <option value="cantonTres">Provincia 3</option>
+                <option value="cantonUno">Quito</option>
+                <option value="cantonDos">Puerto Quito</option>
+                <option value="cantonTres">Cayambe</option>
               </select>
             </div>
 
@@ -142,21 +143,25 @@ export default function Formulario() {
             <div class="flex items-center">
               <label for="origenFondo" class="mr-2 text-green-500">Origen Fondo:</label>
               <select id="origenFondo" name="origenFondo" class="w-full p-2 border rounded">
-                <option value="origenFondoUno">Provincia 1</option>
-                <option value="origenFondoDos">Provincia 2</option>
-                <option value="origenFondoTres">Provincia 3</option>
+                <option value="origenFondoUno">AC</option>
+                <option value="origenFondoDos">AC</option>
+                <option value="origenFondoTres">AC</option>
               </select>
             </div>
 
             <div class="flex items-center">
-              <label for="remuneracion" class="mr-2 text-green-500">Remuneracion:</label>
+              <label for="remuneracion" class="mr-2 text-green-500">Remuneración:</label>
               <input type="text" id="remuneracion" name="remuneracion" class="w-full border-gray-300 border rounded-md py-2 px-3 text-gray-700"></input>
             </div>
 
             <div class="flex items-center">
               <label for="fondos" class="mr-2 text-green-500">Fondos:</label>
-              <input type="text" id="fondos" name="fondos" class="w-full border-gray-300 border rounded-md py-2 px-3 text-gray-700"></input>
+              <select id="fondos" name="fondos" class="w-full p-2 border rounded">
+                <option value="fondosUno">AC</option>
+                <option value="fondosDos">AC</option>
+              </select>
             </div>
+
 
           </div>
         </form>
@@ -170,7 +175,7 @@ export default function Formulario() {
 
 
             <div class="flex items-center">
-              <label for="telefonoInsti" class="mr-2 text-green-500">Telefono Institucional:</label>
+              <label for="telefonoInsti" class="mr-2 text-green-500">Teléfono Institucional:</label>
               <input type="text" id="telefonoInsti" name="telefonoInsti" class="w-full border-gray-300 border rounded-md py-2 px-3 text-gray-700"></input>
             </div>
 
@@ -183,14 +188,13 @@ export default function Formulario() {
             <div class="flex items-center">
               <label for="viaticoResidencia" class="mr-2 text-green-500">Viatico Residencia:</label>
               <select id="viaticoResidencia" name="viaticoResidencia" class="w-full p-2 border rounded">
-                <option value="viaticoResidenciaUno">Provincia 1</option>
-                <option value="viaticoResidenciaDos">Provincia 2</option>
-                <option value="viaticoResidenciaTres">Provincia 3</option>
+                <option value="viaticoResidenciaUno">Si</option>
+                <option value="viaticoResidenciaDos">No</option>
               </select>
             </div>
 
             <div class="flex items-center">
-              <label for="extensionTelef" class="mr-2 text-green-500">Extension Telefónica:</label>
+              <label for="extensionTelef" class="mr-2 text-green-500">Extensión Telefónica:</label>
               <input type="text" id="extensionTelef" name="extensionTelef" class="w-full border-gray-300 border rounded-md py-2 px-3 text-gray-700"></input>
             </div>
 
@@ -208,9 +212,9 @@ export default function Formulario() {
             <div class="flex items-center">
               <label for="puesto" class="mr-2 text-green-500">Puesto:</label>
               <select id="puesto" name="puesto" class="w-full p-2 border rounded">
-                <option value="puestoUno">Provincia 1</option>
-                <option value="puestoDos">Provincia 2</option>
-                <option value="puestoTres">Provincia 3</option>
+                <option value="puestoUno">Oficinista 1</option>
+                <option value="puestoDos">Oficinista 2</option>
+                <option value="puestoTres">Oficinista 3</option>
               </select>
             </div>
 
@@ -227,9 +231,8 @@ export default function Formulario() {
             <div class="flex items-center">
               <label for="partidaOcupada" class="mr-2 text-green-500">Partida Ocupada:</label>
               <select id="partidaOcupada" name="viaticoResidencia" class="w-full p-2 border rounded">
-                <option value="partidaOcupadaUno">Provincia 1</option>
-                <option value="partidaOcupadaDos">Provincia 2</option>
-                <option value="partidaOcupadaTres">Provincia 3</option>
+                <option value="partidaOcupadaUno">Desocupada</option>
+                <option value="partidaOcupadaDos">Ocupada</option>
               </select>
             </div>
           </div>
@@ -244,7 +247,7 @@ export default function Formulario() {
           <div class="grid grid-cols-3 grid-rows-1 gap-4">
 
             <div class="flex items-center">
-              <label for="numeroRegistro" class="mr-2 text-green-500">Numero De Registro:</label>
+              <label for="numeroRegistro" class="mr-2 text-green-500">Número De Registro Senescyt:</label>
               <input type="text" id="numeroRegistro" name="numeroRegistro" class="w-full border-gray-300 border rounded-md py-2 px-3 text-gray-700"></input>
             </div>
 
@@ -256,9 +259,9 @@ export default function Formulario() {
             <div class="flex items-center">
               <label for="proceso" class="mr-2 text-green-500">Proceso:</label>
               <select id="proceso" name="proceso" class="w-full p-2 border rounded">
-                <option value="procesoUno">Provincia 1</option>
-                <option value="procesoDos">Provincia 2</option>
-                <option value="procesoTres">Provincia 3</option>
+                <option value="procesoUno">Adjetivo</option>
+                <option value="procesoDos">Adjetivo Ejemplo</option>
+                <option value="procesoTres">Adjetivo Ejemplo 2</option>
               </select>
             </div>
           </div>
