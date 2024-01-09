@@ -5,7 +5,7 @@ export default function SideBar() {
     return (
 <div className="flex min-h-screen">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-
+    
   {/* Barra lateral */}
   <aside className="bg-green-800 text-white w-1/3 md:w-1/4 lg:w-1/5 flex flex-col items-center">
     {/* Contenido de la barra lateral */}
@@ -33,7 +33,7 @@ export default function SideBar() {
     <div className="flex-grow"></div>
 
     <div className="w-full">
-      <Button className='bg-red-500 w-full py-6 md:py-8 lg:py-10 px-10 md:px-16 lg:px-20 rounded text-white' variant="contained" color="error">
+      <Button className='bg-red-500 w-full py-6 md:py-4 lg:py-10 px-10 md:px-5 lg:px-5 rounded text-white' variant="contained" color="error">
         <a href="#">
           <i className="fas fa-door-open mr-2"></i> Cerrar Sesión
         </a>
