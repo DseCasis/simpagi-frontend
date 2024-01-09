@@ -4,13 +4,13 @@ import LowerBar from "@/app/components/LowerBar";
 import Topbar from "@/app/components/Topbar";
 import React from "react";
 
-
 export default function Formulario() {
   return (
-    <div>
+    
+    <div class="bg-gray-500">
 {/*El Div de acá arriba contiene todo el formulario*/}
       <Topbar></Topbar>
-      <div class="mt-4">
+      <div class="mt-4 ">
         <p class="text-4xl text-green-500 text-center font-bold ">
           REGISTRO DE USUARIO
         </p>
