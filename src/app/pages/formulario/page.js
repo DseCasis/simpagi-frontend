@@ -6,17 +6,17 @@ import React from "react";
 
 export default function Formulario() {
   return (
-    
-    <div class="bg-gray-500">
-{/*El Div de acá arriba contiene todo el formulario*/}
+
+    <div class="bg-gray-100">
+      {/*El Div de acá arriba contiene todo el formulario*/}
       <Topbar></Topbar>
       <div class="mt-4 ">
-        <p class="text-4xl text-green-500 text-center font-bold ">
+        <p class="text-4xl text-green-500 text-center font-bold">
           REGISTRO DE USUARIO
         </p>
       </div>
-{/*El Div de acá abajo contiene todo el 1er formulario*/}
-      <div className="shadow-md p-4 border border-gray-300 mt-4">
+      {/*El Div de acá abajo contiene todo el 1er formulario*/}
+      <div className="shadow-md p-4 border border-gray-300 mt-4 bg-white 500">
         <div class="grid grid-cols-3 grid-rows-4 gap-4">
 
           <div class="flex items-center">
@@ -71,12 +71,12 @@ export default function Formulario() {
           </div>
 
           <div class="flex items-center">
-              <label for="tipoCuartoNivel" class="mr-2 text-green-500">Tipo Cuarto Nivel:</label>
-              <select id="tipoCuartoNivel" name="tipoCuartoNivel" class="w-full p-2 border rounded">
-                <option value="tipoCuartoNivel">N/A</option>
-                <option value="tipoCuartoNivel">Si</option>
-              </select>
-            </div>
+            <label for="tipoCuartoNivel" class="mr-2 text-green-500">Tipo Cuarto Nivel:</label>
+            <select id="tipoCuartoNivel" name="tipoCuartoNivel" class="w-full p-2 border rounded">
+              <option value="tipoCuartoNivel">N/A</option>
+              <option value="tipoCuartoNivel">Si</option>
+            </select>
+          </div>
           <div></div>
           <div class="flex items-center">
             <label for="fechaNacimiento" class="mr-2 text-green-500">Fecha de Nacimiento:</label>
@@ -84,13 +84,13 @@ export default function Formulario() {
           </div>
         </div>
       </div>
-{/*El Div de arriba contiene el 1er formulario*/}     
+      {/*El Div de arriba contiene el 1er formulario*/}
 
-{/*Este div con class m4 hace un espacio entre los bordes hay como 5 iguales en el código*/}
+      {/*Este div con class m4 hace un espacio entre los bordes hay como 5 iguales en el código*/}
       <div class="mt-4"></div>
 
-{/*El Div de acá abajo contiene todo el 2do formulario*/}  
-      <div class="shadow-md p-4 border border-gray-300">
+      {/*El Div de acá abajo contiene todo el 2do formulario*/}
+      <div class="shadow-md p-4 border border-gray-300 bg-white 500">
         <form>
           <div class="grid grid-cols-4 grid-rows-1 gap-4">
 
@@ -133,10 +133,10 @@ export default function Formulario() {
           </div>
         </form>
       </div>
-{/*El Div de acá arriba cierra todo el 2do formulario*/}
+      {/*El Div de acá arriba cierra todo el 2do formulario*/}
       <div class="mt-4"></div>
-{/*El Div de acá abajo tiene todo el 3er formulario*/}
-      <div class="shadow-md p-4 border border-gray-300">
+      {/*El Div de acá abajo tiene todo el 3er formulario*/}
+      <div class="shadow-md p-4 border border-gray-300 bg-white 500">
         <form>
           <div class="grid grid-cols-3 grid-rows-1 gap-4">
 
@@ -166,10 +166,10 @@ export default function Formulario() {
           </div>
         </form>
       </div>
-{/*El Div de acá arriba cierra todo el 3er formulario*/}
+      {/*El Div de acá arriba cierra todo el 3er formulario*/}
       <div class="mt-4"></div>
-{/*El Div de acá abajo inicia todo el 4to formulario*/}
-      <div class="shadow-md p-4 border border-gray-300">
+      {/*El Div de acá abajo inicia todo el 4to formulario*/}
+      <div class="shadow-md p-4 border border-gray-300 bg-white 500">
         <form>
           <div class="grid grid-cols-3 grid-rows-2 gap-4">
 
@@ -202,10 +202,10 @@ export default function Formulario() {
           </div>
         </form>
       </div>
-{/*El Div de acá arriba cierra todo el 4to formulario*/}
+      {/*El Div de acá arriba cierra todo el 4to formulario*/}
       <div class="mt-4"></div>
-{/*El Div de acá abajo abre todo el 5to formulario*/}
-      <div class="shadow-md p-4 border border-gray-300">
+      {/*El Div de acá abajo abre todo el 5to formulario*/}
+      <div class="shadow-md p-4 border border-gray-300 bg-white 500">
         <form>
           <div class="grid grid-cols-3 grid-rows-2 gap-4">
 
@@ -238,11 +238,11 @@ export default function Formulario() {
           </div>
         </form>
       </div>
-{/*El Div de acá arriba abre todo el 5to formulario*/}
+      {/*El Div de acá arriba abre todo el 5to formulario*/}
 
       <div class="mt-4"></div>
-{/*El Div de acá abajo abre todo el 6to formulario*/}
-      <div class="shadow-md p-4 border border-gray-300">
+      {/*El Div de acá abajo abre todo el 6to formulario*/}
+      <div class="shadow-md p-4 border border-gray-300 bg-white 500">
         <form>
           <div class="grid grid-cols-3 grid-rows-1 gap-4">
 
@@ -267,12 +267,12 @@ export default function Formulario() {
           </div>
         </form>
       </div>
-{/*El Div de acá arriba cierra todo el 6to formulario*/}
+      {/*El Div de acá arriba cierra todo el 6to formulario*/}
 
       <div class="mt-4"></div>
-{/*El Div de acá abajo pertenece a los botones*/}
+      {/*El Div de acá abajo pertenece a los botones*/}
 
-      <div class="shadow-md p-4 border border-gray-300">
+      <div class="shadow-md p-4 border border-gray-300 bg-white 500">
         <form>
           <div class="flex justify-center">
             <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-4">
@@ -285,9 +285,9 @@ export default function Formulario() {
         </form>
       </div>
 
-{/*El Div de acá arriba cierra lo que pertenece a los botones*/}
+      {/*El Div de acá arriba cierra lo que pertenece a los botones*/}
 
-{/*El Div de acá abajo cierra todo el formulario*/}
+      {/*El Div de acá abajo cierra todo el formulario*/}
     </div>
 
   )
