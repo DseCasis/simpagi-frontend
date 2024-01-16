@@ -58,8 +58,8 @@ function ingresarPei() {
             {/* El div de arriba, contiene el topbar */}
             <Topbar></Topbar>
             {/* Este div de abajo contiene todo el formulario Ingresar PEI */}
-            <div className="flex justify-center items-center min-h-screen bg-gray-100" >
-                <div className="w-full md:w-1/2 shadow-md p-4 border border-gray-300 mt-4 bg-white">
+            <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-slate-900 via-green-900 to-slate-900" >
+                <div className="w-full md:w-1/2 shadow-md p-4 border border-gray-300 mt-4 bg-gray-100">
                     <form onSubmit={handleSubmit}>
                         <div className='mt-4 text-green-500 text-center font-bold'>INGRESAR PEI</div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
