@@ -2,37 +2,10 @@
 
 import React, { useState } from 'react';
 import Topbar from '@/app/components/Topbar';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 function Formulario() {
-  const [formData, setFormData] = useState({
-    nombres: '',
-    formacionAcademica: '',
-    grupoEtnico: '',
-    apellidos: '',
-    nacionalidad: '',
-    sexo: '',
-    grupoPrioritario: '',
-    tipoCuartoNivel: '',
-    fechaNacimiento: '',
-    localidadAsosiada: '',
-    localidadLaboral: '',
-    provincia: '',
-    canton: '',
-    origenFondo: '',
-    remuneracion: '',
-    fondos: '',
-    telefonoInsti: '',
-    correoInsti: '',
-    viaticoResidencia: '',
-    extensionTelef: '',
-    puesto: '',
-    fechaIngreso: '',
-    numeroImposiciones: '',
-    partidaOcupada: '',
-    numeroRegistro: '',
-    actividad: '',
-    proceso: '',
-  });
   const initialState = {
     nombres: '',
     formacionAcademica: '',
@@ -61,73 +34,101 @@ function Formulario() {
     numeroRegistro: '',
     actividad: '',
     proceso: '',
-    // Agrega más campos según sea necesario
   };
+  //Aqui se asignan las validaciones, para que vayan por separado, o si no uno valida a todos los campos
+  const [formData, setFormData] = useState(initialState);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const validarCampos = () => {
+    const camposVacios = {
+      nombresEmpty: formData.nombres.trim() === '',
+      formacionAcademicaEmpty: formData.formacionAcademica.trim() === '',
+      grupoEtnicoEmpty: formData.grupoEtnico.trim() === '',
+      apellidosEmpty: formData.apellidos.trim() === '',
+      nacionalidadEmpty: formData.nacionalidad.trim() === '',
+      sexoEmpty: formData.sexo.trim() === '',
+      grupoPrioritarioEmpty: formData.grupoPrioritario.trim() === '',
+      tipoCuartoNivelEmpty: formData.tipoCuartoNivel.trim() === '',
+      fechaNacimientoEmpty: formData.fechaNacimiento.trim() === '',
+      localidadAsosiadaEmpty: formData.localidadAsosiada.trim() === '',
+      localidadLaboralEmpty: formData.localidadLaboral.trim() === '',
+      provinciaEmpty: formData.provincia.trim() === '',
+      cantonEmpty: formData.canton.trim() === '',
+      origenFondoEmpty: formData.origenFondo.trim() === '',
+      remuneracionEmpty: formData.remuneracion.trim() === '',
+      fondosEmpty: formData.fondos.trim() === '',
+      telefonoInstiEmpty: formData.telefonoInsti.trim() === '',
+      correoInstiEmpty: formData.correoInsti.trim() === '',
+      viaticoResidenciaEmpty: formData.viaticoResidencia.trim() === '',
+      extensionTelefEmpty: formData.extensionTelef.trim() === '',
+      puestoEmpty: formData.puesto.trim() === '',
+      fechaIngresoEmpty: formData.fechaIngreso.trim() === '',
+      numeroImposicionesEmpty: formData.numeroImposiciones.trim() === '',
+      partidaOcupadaEmpty: formData.partidaOcupada.trim() === '',
+      numeroRegistroEmpty: formData.numeroRegistro.trim() === '',
+      actividadEmpty: formData.actividad.trim() === '',
+      procesoEmpty: formData.proceso.trim() === '',
+    };
+
+    setFormData({
+      ...formData,
+      ...camposVacios,
+    });
+
+    return Object.values(camposVacios).some((campoVacio) => campoVacio);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const camposRequeridos = [
-      { campo: 'nombres', mensaje: 'Por favor, ingrese sus Nombres.' },
-      { campo: 'formacionAcademica', mensaje: 'Por favor, seleccione su Formación Académica.' },
-      { campo: 'grupoEtnico', mensaje: 'Por favor, seleccione el Grupo Étnico' },
-      { campo: 'apellidos', mensaje: 'Por favor, ingrese sus Apellidos.' },
-      { campo: 'nacionalidad', mensaje: 'Por favor, seleccione su Nacionalidad.' },
-      { campo: 'sexo', mensaje: 'Por favor, seleccione su Sexo.' },
-      { campo: 'grupoPrioritario', mensaje: 'Por favor, escriba su Grupo Prioritario.' },
-      { campo: 'tipoCuartoNivel', mensaje: 'Por favor, seleccione Tipo de Cuarto Nivel.' },
-      { campo: 'fechaNacimiento', mensaje: 'Por favor, seleccione su Fecha de Nacimiento.' },
-      { campo: 'localidadAsosiada', mensaje: 'Por favor, seleccione su Localidad Asosiada.' },
-      { campo: 'localidadLaboral', mensaje: 'Por favor, seleccione su Localidad Laboral.' },
-      { campo: 'provincia', mensaje: 'Por favor, seleccione su Provincia.' },
-      { campo: 'canton', mensaje: 'Por favor, seleccione su Cantón.' },
-      { campo: 'origenFondo', mensaje: 'Por favor, seleccione su Origen Fondo.' },
-      { campo: 'remuneracion', mensaje: 'Por favor, escriba su Remuneracion.' },
-      { campo: 'fondos', mensaje: 'Por favor, seleccione sus Fondos.' },
-      { campo: 'telefonoInsti', mensaje: 'Por favor, ingrese el Teléfono Institucional.' },
-      { campo: 'correoInsti', mensaje: 'Por favor, ingrese el Correo Institucional' },
-      { campo: 'viaticoResidencia', mensaje: 'Por favor, seleccione el Viatico.' },
-      { campo: 'extensionTelef', mensaje: 'Por favor, ingrese la Extension telefónica.' },
-      { campo: 'puesto', mensaje: 'Por favor, seleccione el Puesto.' },
-      { campo: 'fechaIngreso', mensaje: 'Por favor, seleccione la Fecha de Ingreso.' },
-      { campo: 'numeroImposiciones', mensaje: 'Por favor, seleccione el Número de Imposiciones.' },
-      { campo: 'partidaOcupada', mensaje: 'Por favor, seleccione Partida Ocupada.' },
-      { campo: 'numeroRegistro', mensaje: 'Por favor, ingrese el número de Registro Senescyt.' },
-      { campo: 'actividad', mensaje: 'Por favor, ingrese la Actividad.' },
-      { campo: 'proceso', mensaje: 'Por favor, seleccione el Proceso.' }
-    ];
-
-    // Validación de campos requeridos
-    for (const campoInfo of camposRequeridos) {
-      const valorCampo = formData[campoInfo.campo];
-
-      // Verificar si el campo existe y es una cadena antes de llamar a trim()
-      if (!valorCampo || (typeof valorCampo === 'string' && valorCampo.trim() === '')) {
-        alert(campoInfo.mensaje);
-        return;
-      }
-    }
-
-    // Confirmación antes de enviar
-    const confirmacion = window.confirm('¿Estás seguro de enviar el formulario?');
-    if (!confirmacion) {
+    // Validación de campos
+    if (validarCampos()) {
+      // Mostrar mensaje de error con SweetAlert2
+      Swal.fire({
+        title: 'Error',
+        text: 'Por favor, completa todos los campos.',
+        icon: 'error',
+      });
       return;
     }
 
-    // Si pasa la validación y se confirma, puedes enviar los datos al servidor o realizar otras acciones
-    alert('Formulario enviado:\n' + JSON.stringify(formData, null, 2));
-    // Reinicia el estado del formulario después de enviar
-    setFormData(initialState);
+    // Confirmación antes de enviar
+    Swal.fire({
+      title: '¿Estás seguro de enviar?',
+      text: '¡Una vez hecho esto no se puede revertir!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, envíalo!',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Enviar datos al servidor o realizar otras acciones
+        Swal.fire({
+          title: '¡Enviado!',
+          text: 'Tu archivo se ha enviado.',
+          icon: 'success',
+        });
+        // Reiniciar el estado del formulario después de enviar
+        setFormData(initialState);
+      }
+    });
   };
   const handlereject = () => {
-    alert('Formularo eliminado')
+    // Rechazar el formulario y reiniciar el estado
+    Swal.fire({
+      title: 'Formulario eliminado',
+      icon: 'info',
+    });
     setFormData(initialState);
   };
+
+
   return (
 
     <div className='bg-gradient-to-r from-slate-900 via-green-900 to-slate-900'>
@@ -154,8 +155,13 @@ function Formulario() {
                     id="nombres"
                     name="nombres"
                     value={formData.nombres}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    onChange={(event) => {
+                      const inputValue = event.target.value;
+                      if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
+                        handleInputChange(event);
+                      }
+                    }}
+                    className={`w-full border ${formData.nombresEmpty ? 'border-red-500' : 'border-gray-300'} rounded-md py-1 px-3 text-green-700`}
                   />
                 </div>
 
@@ -166,7 +172,7 @@ function Formulario() {
                     name="formacionAcademica"
                     value={formData.formacionAcademica}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.formacionAcademicaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="formacionAcademicaUno" className="whitespace-nowrap">Ejemplo</option>
@@ -181,8 +187,13 @@ function Formulario() {
                     id="grupoEtnico"
                     name="grupoEtnico"
                     value={formData.grupoEtnico}
-                    onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    onChange={(event) => {
+                      const inputValue = event.target.value;
+                      if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
+                        handleInputChange(event);
+                      }
+                    }}
+                    className={`w-full p-2 ${formData.grupoEtnicoEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 `}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="grupoEtnicoUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -198,8 +209,13 @@ function Formulario() {
                     id="apellidos"
                     name="apellidos"
                     value={formData.apellidos}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    onChange={(event) => {
+                      const inputValue = event.target.value;
+                      if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
+                        handleInputChange(event);
+                      }
+                    }}
+                    className={`w-full p-2 ${formData.apellidosEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
 
@@ -210,7 +226,7 @@ function Formulario() {
                     name="nacionalidad"
                     value={formData.nacionalidad}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.nacionalidadEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="nacionalidadUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -226,7 +242,8 @@ function Formulario() {
                     name="sexo"
                     value={formData.sexo}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.sexoEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
+
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="sexoUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -242,8 +259,13 @@ function Formulario() {
                     id="grupoPrioritario"
                     name="grupoPrioritario"
                     value={formData.grupoPrioritario}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    onChange={(event) => {
+                      const inputValue = event.target.value;
+                      if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
+                        handleInputChange(event);
+                      }
+                    }}
+                    className={`w-full p-2 ${formData.grupoPrioritarioEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
 
@@ -254,7 +276,7 @@ function Formulario() {
                     name="tipoCuartoNivel"
                     value={formData.tipoCuartoNivel}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.tipoCuartoNivelEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="tipoCuartoNivelUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -271,7 +293,7 @@ function Formulario() {
                     name="fechaNacimiento"
                     value={formData.fechaNacimiento}
                     onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    className={`w-full p-2 ${formData.fechaNacimientoEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
               </div>
@@ -291,7 +313,7 @@ function Formulario() {
                     name="localidadAsosiada"
                     value={formData.localidadAsosiada}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.localidadAsosiadaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="localidadAsosiadaUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -307,7 +329,7 @@ function Formulario() {
                     name="localidadLaboral"
                     value={formData.localidadLaboral}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.localidadLaboralEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="localidadLaboralUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -323,7 +345,7 @@ function Formulario() {
                     name="provincia"
                     value={formData.provincia}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.provinciaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="provinciaUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -339,7 +361,8 @@ function Formulario() {
                     name="canton"
                     value={formData.canton}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.cantonEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
+
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="cantonUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -365,7 +388,7 @@ function Formulario() {
                     name="origenFondo"
                     value={formData.origenFondo}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.origenFondoEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="origenFondoUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -381,8 +404,13 @@ function Formulario() {
                     id="remuneracion"
                     name="remuneracion"
                     value={formData.remuneracion}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    onChange={(event) => {
+                      const inputValue = event.target.value;
+                      if (/^[0-9]*$/.test(inputValue) || inputValue === '') {
+                        handleInputChange(event);
+                      }
+                    }}
+                    className={`w-full p-2 ${formData.remuneracionEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
 
@@ -393,7 +421,7 @@ function Formulario() {
                     name="fondos"
                     value={formData.fondos}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.fondosEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="fondosUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -419,8 +447,13 @@ function Formulario() {
                     id="telefonoInsti"
                     name="telefonoInsti"
                     value={formData.telefonoInsti}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    onChange={(event) => {
+                      const inputValue = event.target.value;
+                      if (/^[0-9]*$/.test(inputValue) || inputValue === '') {
+                        handleInputChange(event);
+                      }
+                    }}
+                    className={`w-full p-2 ${formData.telefonoInstiEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
 
@@ -432,7 +465,7 @@ function Formulario() {
                     name="correoInsti"
                     value={formData.correoInsti}
                     onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    className={`w-full p-2 ${formData.correoInstiEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
 
@@ -443,7 +476,7 @@ function Formulario() {
                     name="viaticoResidencia"
                     value={formData.viaticoResidencia}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.viaticoResidenciaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="viaticoResidenciaUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -459,8 +492,13 @@ function Formulario() {
                     id="extensionTelef"
                     name="extensionTelef"
                     value={formData.extensionTelef}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    onChange={(event) => {
+                      const inputValue = event.target.value;
+                      if (/^[0-9]*$/.test(inputValue) || inputValue === '') {
+                        handleInputChange(event);
+                      }
+                    }}
+                    className={`w-full p-2 ${formData.extensionTelefEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
 
@@ -481,7 +519,7 @@ function Formulario() {
                     name="puesto"
                     value={formData.puesto}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.puestoEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="puestoUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -498,7 +536,7 @@ function Formulario() {
                     name="fechaIngreso"
                     value={formData.fechaIngreso}
                     onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    className={`w-full p-2 ${formData.viaticoResidenciaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
 
@@ -509,8 +547,13 @@ function Formulario() {
                     id="numeroImposiciones"
                     name="numeroImposiciones"
                     value={formData.numeroImposiciones}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    onChange={(event) => {
+                      const inputValue = event.target.value;
+                      if (/^[0-9]*$/.test(inputValue) || inputValue === '') {
+                        handleInputChange(event);
+                      }
+                    }}
+                    className={`w-full p-2 ${formData.numeroImposicionesEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
 
@@ -521,7 +564,7 @@ function Formulario() {
                     name="partidaOcupada"
                     value={formData.partidaOcupada}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.partidaOcupadaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="partidaOcupadaUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -547,8 +590,13 @@ function Formulario() {
                     id="numeroRegistro"
                     name="numeroRegistro"
                     value={formData.numeroRegistro}
-                    onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    onChange={(event) => {
+                      const inputValue = event.target.value;
+                      if (/^[0-9]*$/.test(inputValue) || inputValue === '') {
+                        handleInputChange(event);
+                      }
+                    }}
+                    className={`w-full p-2 ${formData.numeroRegistroEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
 
@@ -560,7 +608,7 @@ function Formulario() {
                     name="actividad"
                     value={formData.actividad}
                     onChange={handleInputChange}
-                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                    className={`w-full p-2 ${formData.actividadEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
 
@@ -571,7 +619,7 @@ function Formulario() {
                     name="proceso"
                     value={formData.proceso}
                     onChange={handleInputChange}
-                    className="w-full p-2 border rounded text-green-700"
+                    className={`w-full p-2 ${formData.procesoEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     <option value="procesoUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -591,14 +639,15 @@ function Formulario() {
               <div class="flex justify-center">
                 <button
                   type="submit"
-                  className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-4"
+                  onClick={handleSubmit}
+                  className="w-full md:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded md:mr-4"
                 >
                   Aceptar
                 </button>
                 <button
                   type="button"
                   onClick={handlereject}
-                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                  className="w-full md:w-auto bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
                 >
                   Rechazar
                 </button>
