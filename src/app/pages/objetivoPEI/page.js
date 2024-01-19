@@ -2,17 +2,10 @@
 
 import React, { useState } from 'react';
 import Topbar from '@/app/components/Topbar';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 function objetivoPei() {
-    const [formData, setFormData] = useState({
-        tituloObjetivo: '',
-        areaInvestigacion: '',
-        lineaInvestigacion: '',
-        programaDepartamento: '',
-        rubro: '',
-        indicadorResultado: '',
-        responsable: '',
-    });
     const initialState = {
         tituloObjetivo: '',
         areaInvestigacion: '',
@@ -24,72 +17,84 @@ function objetivoPei() {
         // Agrega más campos según sea necesario
     };
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
-    };
+    const [formData, setFormData] = useState(initialState);
+
+    const handleInputChange = (e) =>
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         // Validación de campos
-        if (formData.tituloObjetivo.trim() === '') {
-            alert('Por favor, el Título del objetivo.');
-            return;
-        }
-        if (formData.areaInvestigacion.trim() === '') {
-            alert('Por favor, seleccione el Área de investigación.');
-            return;
-        }
-        if (formData.lineaInvestigacion.trim() === '') {
-            alert('Por favor, seleccione la Línea de investigación.');
-            return;
-        }
-        if (formData.programaDepartamento.trim() === '') {
-            alert('Por favor, seleccione el Programa o departamento.');
-            return;
-        }
-        if (formData.rubro.trim() === '') {
-            alert('Por favor, seleccione el rubro.');
-            return;
-        }
-        if (formData.indicadorResultado.trim() === '') {
-            alert('Por favor, seleccione el Indicador de resultado.');
-            return;
-        }
-        if (formData.responsable.trim() === '') {
-            alert('Por favor, ingrese el Responsable.');
-            return;
-        }
-        // Confirmación antes de enviar
-        const confirmacion = window.confirm('¿Estás seguro de enviar el objetivo PEI?');
-        if (!confirmacion) {
+        if (formData.tituloObjetivo.trim() === '' || formData.areaInvestigacion.trim() === '' || formData.lineaInvestigacion.trim() === ''
+            || formData.programaDepartamento.trim() === '' || formData.rubro.trim() === '' || formData.indicadorResultado.trim() === ''
+            || formData.responsable.trim() === '') {
+            setFormData({
+                ...formData,
+                tituloObjetivoEmpty: formData.tituloObjetivo.trim() === '',
+                areaInvestigacionEmpty: formData.areaInvestigacion.trim() === '',
+                lineaInvestigacionEmpty: formData.lineaInvestigacion.trim() === '',
+                programaDepartamentoEmpty: formData.programaDepartamento.trim() === '',
+                rubroEmpty: formData.rubro.trim() === '',
+                indicadorResultadoEmpty: formData.indicadorResultado.trim() === '',
+                responsableEmpty: formData.responsable.trim() === '',
+            });
+
+            // Mostrar mensaje de error con SweetAlert2
+            Swal.fire({
+                title: 'Error',
+                text: 'Por favor, completa todos los campos.',
+                icon: 'error',
+            });
             return;
         }
 
-        // Si pasa la validación y se confirma, puedes enviar los datos al servidor o realizar otras acciones
-        alert('Formulario enviado:\n' + JSON.stringify(formData, null, 2));
-        // Reinicia el estado del formulario después de enviar
-        setFormData(initialState);
+        // Confirmación antes de enviar
+        Swal.fire({
+            title: '¿Estás seguro de enviar?',
+            text: '¡Una vez hecho esto no se puede revertir!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, envíalo!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Enviar datos al servidor o realizar otras acciones
+                Swal.fire({
+                    title: '¡Enviado!',
+                    text: 'Tu archivo se ha enviado.',
+                    icon: 'success',
+                });
+                // Reiniciar el estado del formulario después de enviar
+                setFormData(initialState);
+            }
+        });
     };
+
     const handlereject = () => {
-        const confirmacioneliminar = window.confirm('¿Estás seguro de eliminar todo?');
-        if (!confirmacioneliminar) {
-            return;
-        }
-        alert('Se ha eliminado el formulario')
+        // Rechazar el formulario y reiniciar el estado
+        Swal.fire({
+            title: 'Formulario eliminado',
+            icon: 'info',
+        });
         setFormData(initialState);
     };
+
     return (
 
         <div>
             {/* El div de arriba, contiene el topbar */}
             <Topbar></Topbar>
             {/* Este div de abajo contiene todo el formulario Ingresar PEI */}
-            <div className="flex justify-center items-center min-h-screen bg-gray-100" >
-                <div className="w-full md:w-1/2 shadow-md p-4 border border-gray-300 mt-4 bg-white">
+            <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-slate-900 via-green-900 to-slate-900" >
+                <div className="w-full md:w-1/2 shadow-md p-4 border-4 border-green-800 mt-4 bg-gray-100">
                     <form onSubmit={handleSubmit}>
-                        <div className='mt-4 text-green-500 text-center font-bold'>Ingresar Objetivo PEI</div>
+                        <div className='text-3xl text-green-600 text-center font-semibold font-sans'>Ingresar Objetivo PEI</div>
                         <div className="grid grid-cols-5 md:grid-cols-2 gap-4 mt-4">
                             <div className="flex items-center col-span-2 mt-">
                                 <label htmlFor="tituloObjetivo" className="mr-2 text-green-500">Titulo Del Objetivo:</label>
@@ -98,8 +103,13 @@ function objetivoPei() {
                                     id="tituloObjetivo"
                                     name="tituloObjetivo"
                                     value={formData.tituloObjetivo}
-                                    onChange={handleInputChange}
-                                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                                    onChange={(event) => {
+                                        const inputValue = event.target.value;
+                                        if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
+                                            handleInputChange(event);
+                                        }
+                                    }}
+                                    className={`w-full border ${formData.tituloObjetivoEmpty ? 'border-red-500' : 'border-gray-300'} rounded-md py-1 px-3 text-green-700`}
                                 />
                             </div>
 
@@ -110,7 +120,7 @@ function objetivoPei() {
                                     name="areaInvestigacion"
                                     value={formData.areaInvestigacion}
                                     onChange={handleInputChange}
-                                    className="w-full p-2 border rounded"
+                                    className={`w-full p-2 ${formData.areaInvestigacionEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                                 >
                                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                                     <option value="areaInvestigacionUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -126,7 +136,7 @@ function objetivoPei() {
                                     name="lineaInvestigacion"
                                     value={formData.lineaInvestigacion}
                                     onChange={handleInputChange}
-                                    className="w-full p-2 border rounded"
+                                    className={`w-full p-2 ${formData.lineaInvestigacionEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                                 >
                                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                                     <option value="lineaInvestigacionUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -142,7 +152,7 @@ function objetivoPei() {
                                     name="programaDepartamento"
                                     value={formData.programaDepartamento}
                                     onChange={handleInputChange}
-                                    className="w-full p-2 border rounded"
+                                    className={`w-full p-2 ${formData.programaDepartamentoEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                                 >
                                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                                     <option value="programaDepartamentoUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -157,7 +167,7 @@ function objetivoPei() {
                                     name="rubro"
                                     value={formData.rubro}
                                     onChange={handleInputChange}
-                                    className="w-full p-2 border rounded"
+                                    className={`w-full p-2 ${formData.rubroEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                                 >
                                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                                     <option value="rubroUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -172,7 +182,7 @@ function objetivoPei() {
                                     name="indicadorResultado"
                                     value={formData.indicadorResultado}
                                     onChange={handleInputChange}
-                                    className="w-full p-2 border rounded"
+                                    className={`w-full p-2 ${formData.indicadorResultadoEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                                 >
                                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                                     <option value="indicadorResultadoUno" className="whitespace-nowrap">Ejemplo 1</option>
@@ -187,8 +197,13 @@ function objetivoPei() {
                                     id="responsable"
                                     name="responsable"
                                     value={formData.responsable}
-                                    onChange={handleInputChange}
-                                    className="w-full border border-gray-300 rounded-md py-1 px-3 text-green-700"
+                                    onChange={(event) => {
+                                        const inputValue = event.target.value;
+                                        if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
+                                            handleInputChange(event);
+                                        }
+                                    }}
+                                    className={`w-full border ${formData.responsableEmpty ? 'border-red-500' : 'border-gray-300'} rounded-md py-1 px-3 text-green-700`}
                                 />
                             </div>
 
