@@ -145,7 +145,7 @@ function Formulario() {
         <div className="">
           <form onSubmit={handleSubmit}>
 
-            <div className="shadow-md p-4 border-4 border-green-800 mt-4 bg-gray-100">
+            <div className="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg mt-4 bg-gray-100">
               <div className="text-black font-semibold font-sans grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
 
                 <div className="flex items-center">
@@ -302,7 +302,7 @@ function Formulario() {
             {/*Este div con class m4 hace un espacio entre los bordes hay como 5 iguales en el código*/}
             <div class="mt-4"></div>
 
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
 
               <div class="text-black font-semibold font-sans grid grid-cols-4 grid-rows-1 gap-4">
 
@@ -377,7 +377,7 @@ function Formulario() {
 
             <div class="mt-4"></div>
             {/*El Div de acá abajo tiene todo el 3er formulario*/}
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
 
               <div class="text-black font-semibold font-sans grid grid-cols-3 grid-rows-1 gap-4">
 
@@ -435,7 +435,7 @@ function Formulario() {
             {/*El Div de acá arriba cierra todo el 3er formulario*/}
             <div class="mt-4"></div>
             {/*El Div de acá abajo inicia todo el 4to formulario*/}
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
 
               <div class="text-black font-semibold font-sans grid grid-cols-3 grid-rows-2 gap-4">
 
@@ -508,7 +508,7 @@ function Formulario() {
             {/*El Div de acá arriba cierra todo el 4to formulario*/}
             <div class="mt-4"></div>
             {/*El Div de acá abajo abre todo el 5to formulario*/}
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
 
               <div class="text-black font-semibold font-sans grid grid-cols-3 grid-rows-2 gap-4">
 
@@ -579,7 +579,7 @@ function Formulario() {
 
             <div class="mt-4"></div>
             {/*El Div de acá abajo abre todo el 6to formulario*/}
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
 
               <div class="text-black font-semibold font-sans grid grid-cols-3 grid-rows-1 gap-4">
 
@@ -635,7 +635,7 @@ function Formulario() {
             <div class="mt-4"></div>
             {/*El Div de acá abajo pertenece a los botones*/}
 
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
               <div class="flex justify-center">
                 <button
                   type="submit"
