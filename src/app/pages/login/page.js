@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-function login() {
+function Login() {
     const initialState = {
         email: '',
         password: '',
@@ -118,4 +118,4 @@ function login() {
 
     );
 }
-export default login;
+export default Login;
