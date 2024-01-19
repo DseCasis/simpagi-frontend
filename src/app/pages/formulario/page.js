@@ -138,8 +138,8 @@ function Formulario() {
 
       {/* Este div de abajo contiene todo el formulario Ingresar PEI */}
 
-      <div className="mt-4 px-20">
-        <p class="text-4xl text-white text-center font-semibold font-sans">
+      <div className="px-20">
+        <p class="p-7 text-4xl text-white text-center font-semibold font-sans">
           REGISTRO DE USUARIO
         </p>
         <div className="">
