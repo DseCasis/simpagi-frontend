@@ -50,7 +50,8 @@ export default function Topbar(){
     
   
     return (
-      <div className="bg-green-800 text-white w-full">
+      <div class="navbar">
+      <div className="bg-white">
         <div className="container mx-auto flex items-center justify-between py-5">
           <nav className="flex-1 space-x-9 text-center">
           
@@ -174,6 +175,7 @@ export default function Topbar(){
             </div>
           </nav>
         </div>
+      </div>
       </div>
     );
   }
