@@ -27,21 +27,18 @@ const FileUpload = () => {
             <img src="/logo.png" alt="Logo" />
           </div>
 
-          <Button
-            component="label"
-            className='bg-blue-500 p-1 text-gray-100'
-            htmlFor="fileInput"
-          >
-            Seleccionar Archivo
-            <input
-              type="file"
-              id="fileInput"
-              style={{ display: 'none' }}
-              onChange={(event) => setSelectedFile(event.target.files[0])}
-            />
-          </Button>
+          
+          <label class="block mb-2 text-sm font-medium dark:text-white" for="file_input"></label>
+         <input class="block w-full text-sm text-gray-900 border border-green-200 rounded-lg  bg-gray-50 " 
+            id="file_input" 
+            type="file">
+          </input>
 
-          <Button className='bg-green-600 p-1 text-gray-100' variant="contained" disableElevation size="medium">
+          
+          <button onClick={handleUpload} className='bg-blue-500 text-gray-100 rounded-lg '>Subir Archivo</button>
+          
+
+          <Button className='bg-green-600 p-1 text-gray-100 rounded-lg ' variant="contained" disableElevation size="medium">
             Exportar
           </Button>
 
