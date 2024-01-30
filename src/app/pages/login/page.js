@@ -33,7 +33,6 @@ export default function Page(){
 
 
                         <TextField
-                            onChange={handleInputChange}
                             label="Contraseña"
                             type="password"
                             id="password"
