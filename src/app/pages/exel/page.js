@@ -34,10 +34,7 @@ const FileUpload = () => {
 
     <div>
       <input type="file" onChange={handleFileChange} />
-      <button className='bg-green-900 p-3' variant="contained" disableElevation size="large">Subir Archivo</button>
-      <button className='bg-green-900 p-3' variant="contained" disableElevation size="large">Subir Archivo</button>
-      <button className='bg-green-900 p-3' variant="contained" disableElevation size="large">Subir Archivo</button>
-      <button className='bg-green-900 p-3' variant="contained" disableElevation size="large">Subir Archivo</button>
+      
       
     </div>
         </div>
