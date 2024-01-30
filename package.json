@@ -22,6 +22,7 @@
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-html2pdf": "^1.0.1",
     "react-router-dom": "^6.21.3",
     "sweetalert2": "^11.6.13",
     "swr": "^2.2.4"
