@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import Topbar from '@/app/components/Topbar';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import Button from "@mui/material/Button";
+
 
 function Formulario() {
   const initialState = {
@@ -137,11 +139,17 @@ function Formulario() {
       <Topbar></Topbar>
 
       {/* Este div de abajo contiene todo el formulario Ingresar PEI */}
-
-      <div className="px-20">
-        <p class="p-7 text-4xl text-white text-center font-semibold font-sans">
+        
+      <div className="px-20 ">
+        <p class="p-4 text-4xl text-white text-center font-semibold font-sans">
           REGISTRO DE USUARIO
         </p>
+        <div className='py-2'>
+        <img  className=" float-left px-1  " style={{ width: '45px', height: '33px'}} src="https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photo/12818535/image/2347bfda38b1ace37cd7cc4777aa454a" alt=""/>
+        <Button className=' bg-green-800 p-1 text-gray-100 w-24 min-w-full md:min-w-0' variant="contained" href='/pages/exel' disableElevation size="lg">
+         ARCHIVOS </Button>
+         </div>
+
         <div className="">
           <form onSubmit={handleSubmit}>
 
