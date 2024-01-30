@@ -1,4 +1,4 @@
-"use client"
+
 
 import React from "react";
 import {
@@ -31,7 +31,8 @@ import {
 } from "@heroicons/react/24/outline";
  
 export default function SidebarWithBurgerMenu() {
-  const [open, setOpen] = React.useState(8);
+  const [open, setOpen] = React.useState(0);
+  
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
  
   const handleOpen = (value) => {
@@ -95,21 +96,21 @@ export default function SidebarWithBurgerMenu() {
                 <List className="p-0">
                   <ListItem>
                     <ListItemPrefix>
-                    {/* ChevronRightIcon strokeWidth={3} className="h-3 w-5"*/}
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5"></ChevronRightIcon>
                     </ListItemPrefix>
-                     {/*nombre del item*/}
+                     nombre del item
                   </ListItem>
                   <ListItem>
                     <ListItemPrefix>
-                    {/*<ChevronRightIcon strokeWidth={3} className="h-3 w-5" />*/}
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                     </ListItemPrefix>
-                    {/*nombre del item*/}
+                    nombre del item
                   </ListItem>
                   <ListItem>
                     <ListItemPrefix>
-                       {/*<ChevronRightIcon strokeWidth={3} className="h-3 w-5" />*/}
+                       <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                     </ListItemPrefix>
-                    {/*nombre del item*/}
+                    nombre del item
                   </ListItem>
                 </List>
               </AccordionBody>
@@ -142,15 +143,15 @@ export default function SidebarWithBurgerMenu() {
                 <List className="p-0">
                   <ListItem>
                     <ListItemPrefix>
-                    {/*<ChevronRightIcon strokeWidth={3} className="h-3 w-5" />*/}
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                     </ListItemPrefix>
-                    {/*nombre del item*/}
+                    nombre del item
                   </ListItem>
                   <ListItem>
                     <ListItemPrefix>
-                      {/*<ChevronRightIcon strokeWidth={3} className="h-3 w-5" />*/}
+                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                     </ListItemPrefix>
-                    {/*nombre del item*/}
+                    nombre del item
                   </ListItem>
                 </List>
               </AccordionBody>

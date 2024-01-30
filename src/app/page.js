@@ -1,20 +1,13 @@
 "use client"
 
 import React from "react";
-
-import Login from "./pages/login/page";
-import RecoverPassword from "./pages/recoverPassword/page";
-import Topbar from "./components/Topbar";
-import SideBar from "./components/SideBar";
-import Header  from "./components/Header";
-
+import exel from "./pages/exel/page";
 
 export default function Home() {
 
 
-    return (
+    
         
-            
-            <Header></Header>
-    )
+            <exel></exel>
+  
 }
