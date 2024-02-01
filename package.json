@@ -24,7 +24,7 @@
     "react-dom": "^18",
     "react-html2pdf": "^1.0.1",
     "react-router-dom": "^6.21.3",
-    "sweetalert2": "^11.6.13",
+    "sweetalert2": "^11.10.4",
     "swr": "^2.2.4"
   },
   "devDependencies": {
