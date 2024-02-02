@@ -17,27 +17,6 @@ export default function Formulario() {
     setIsValidEmail(emailRegex.test(inputEmail));
   };
 
-<<<<<<< HEAD
-                        <TextField
-                            onChange={handleInputChange}
-                            label="Contraseña"
-                            type="password"
-                            id="password"
-                            name="password"
-                            required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-                        />
-                    </form>
-        
-                    <Button type="submit" className='bg-blue-900 p-3' variant="contained" disableElevation size="large">
-                        Ingresar
-                    </Button>
-                    <a className= "text-center" href="/pages/recoverPassword" > ¿Olvidaste la contraseña?</a>
-                </div>
-                <div className="w-1/2 rounded-r-md bg-red-500">
-                    <img className="w-full h-full object-cover rounded-r-md" src="/trigo.png" alt="" />
-                </div>
-            </div>
-=======
   const handleSubmit = (event) => {
     event.preventDefault();
 
