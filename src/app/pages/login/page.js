@@ -17,6 +17,7 @@ export default function Formulario() {
     setIsValidEmail(emailRegex.test(inputEmail));
   };
 
+  
   const handleSubmit = (event) => {
     event.preventDefault();
 

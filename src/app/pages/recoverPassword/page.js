@@ -37,7 +37,8 @@ const Formulario = () => {
         <div className="flex flex-wrap min-h-screen w-full content-center justify-center py-10 bg-slate-200 bg-gradient-to-r from-slate-900 via-green-900 to-slate-900 ">
             <div className="w-2/4 h-5/6 flex justify-center border-2 rounded-md border md:shadow-2xl md:shadow-stone-500 bg-gray-200 ">
                 <div className="w-1/2 flex justify-center flex-col p-12 space-y-4 ">
-                    <h1 className="flex-1 text-xl text-center font-semibold pb-0 ">Sistema Simplificado de Planificación y Gestión de la investigación
+                    <h1 className="flex-1 text-xl text-center font-semibold pb-0 ">
+                        Sistema Simplificado de Planificación y Gestión de la investigación
                     </h1> 
                     <div className="px-4">
                     <img 
