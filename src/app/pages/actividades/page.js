@@ -1,21 +1,29 @@
 "use client"
 
 import React, { useState } from 'react';
-import Topbar from '@/app/components/Topbar';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
+
 function Actividades() {
 
+
+
     const initialState = {
-        tituloActividad: '',
-        ObjetivoPei: '',
-        resultadoEsperado: '',
-        // Agrega más campos según sea necesario
+        // ... otros campos
+        actividadUnoVisible: false,
+        actividadDosVisible: false,
+        actividadTresVisible: false,
+        nombreActividadUno: '',  // Nuevo campo para nombre de actividadUno
+        nombreActividadDos: '',  // Nuevo campo para nombre de actividadDos
+        nombreActividadTres: '',  // Nuevo campo para nombre de actividadTres
+        seleccionProyecto: '',
+        seleccionComponente: '',
+        seleccionProyectoEmpty: false,
+        seleccionComponenteEmpty: false,
     };
 
     const [formData, setFormData] = useState(initialState);
-    const [showAdditionalDiv, setShowAdditionalDiv] = useState(false);
 
     const handleInputChange = (e) =>
         setFormData({
@@ -27,13 +35,12 @@ function Actividades() {
         event.preventDefault();
 
         // Validación de campos
-        if (formData.tituloActividad.trim() === '' || formData.ObjetivoPei.trim() === '' || formData.resultadoEsperado.trim() === '') {
+        if (formData.seleccionProyecto.trim() === '' || formData.seleccionComponente.trim() === '') {
             // Cambiar el color del campo a rojo si algún campo está vacío
             setFormData({
                 ...formData,
-                tituloActividadEmpty: formData.tituloActividad.trim() === '',
-                ObjetivoPeiEmpty: formData.ObjetivoPei.trim() === '',
-                resultadoEsperadoEmpty: formData.resultadoEsperado.trim() === '',
+                seleccionProyectoEmpty: formData.seleccionProyecto.trim() === '',
+                seleccionComponenteEmpty: formData.seleccionComponente.trim() === '',
             });
 
             // Mostrar mensaje de error con SweetAlert2
@@ -57,15 +64,51 @@ function Actividades() {
             cancelButtonText: 'Cancelar',
         }).then((result) => {
             if (result.isConfirmed) {
+                // Mostrar el nombre debajo del botón correspondiente
+                if (formData.actividadUnoVisible) {
+                    setFormData({
+                        ...formData,
+                        actividadUnoVisible: false,
+                        nombreActividadUno: formData.nombreActividadUno,
+                    });
+                } else if (formData.actividadDosVisible) {
+                    setFormData({
+                        ...formData,
+                        actividadDosVisible: false,
+                        nombreActividadDos: formData.nombreActividadDos,
+                    });
+                } else if (formData.actividadTresVisible) {
+                    setFormData({
+                        ...formData,
+                        actividadTresVisible: false,
+                        nombreActividadTres: formData.nombreActividadTres,
+                    });
+                }
+
                 // Enviar datos al servidor o realizar otras acciones
                 Swal.fire({
                     title: '¡Enviado!',
                     text: 'Tu archivo se ha enviado.',
                     icon: 'success',
                 });
-                // Reiniciar el estado del formulario después de enviar
+
+                // Reiniciar el estado del formulario principal después de enviar
                 setFormData(initialState);
             }
+        });
+    };
+
+    const mostrarActividad = (actividad) => {
+        setFormData({
+            ...formData,
+            [`${actividad}Visible`]: true,
+        });
+    };
+
+    const ocultarActividad = (actividad) => {
+        setFormData({
+            ...formData,
+            [`${actividad}Visible`]: false,
         });
     };
 
@@ -81,17 +124,17 @@ function Actividades() {
     return (
         <div className="flex flex-col justify-center items-center min-h-screen bg-gradient-to-r from-slate-900 via-green-900 to-slate-900">
             <form onSubmit={handleSubmit}>
-                <div className="w-full md:w-1/2 shadow-md p-4 border-4 mt-4 bg-gray-100 border md:shadow-2xl md:shadow-stone-500 rounded-lg">
-                    <div className='mt-4 text-2xl text-green-600 text-center font-semibold font-sans'>INGRESAR PEI</div>
+                <div className="w-full shadow-md p-4 border-4 mt-4 bg-gray-100 border md:shadow-2xl md:shadow-stone-500 rounded-lg">
+                    <div className='mt-4 text-2xl text-green-600 text-center font-semibold font-sans'>Selección de Proyecto</div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                        <div className={`flex items-center col-span-2 mt- `}>
+                        <div className={`flex items-center col-span-2 mt-2`}>
                             <label htmlFor="seleccionProyecto" className="mr-2 text-green-500">Seleccione el Proyecto:</label>
                             <select
                                 id="seleccionProyecto"
                                 name="seleccionProyecto"
                                 value={formData.seleccionProyecto}
                                 onChange={handleInputChange}
-                                className={`w-full p-2 ${formData.ObjetivoPeiEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
+                                className={`w-full p-2 ${formData.seleccionProyectoEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                             >
                                 <option value="" className="whitespace-nowrap">Seleccione...</option>
                                 <option value="ObjetivoPeiUno" className="whitespace-nowrap">Conservar y usar</option>
@@ -107,7 +150,7 @@ function Actividades() {
                                 name="seleccionComponente"
                                 value={formData.seleccionComponente}
                                 onChange={handleInputChange}
-                                className={`w-full p-2 ${formData.ObjetivoPeiEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
+                                className={`w-full p-2 ${formData.seleccionComponenteEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                             >
                                 <option value="" className="whitespace-nowrap">Seleccione...</option>
                                 <option value="ObjetivoPeiUno" className="whitespace-nowrap">Conservar y usar</option>
@@ -122,61 +165,83 @@ function Actividades() {
                 <div class="mt-1"></div>
 
                 {/* Este div inicia el Segundo cuadro */}
-                <div className="w-full md:w-1/2 shadow-md p-4 border-4 mt-4 bg-gray-100 border md:shadow-2xl md:shadow-stone-500 rounded-lg">
+                <div className="w-full shadow-md p-4 border-4 mt-4 bg-gray-100 border md:shadow-2xl md:shadow-stone-500 rounded-lg">
 
-                    <div className='mt-4 text-2xl text-green-600 text-center font-semibold font-sans'>INGRESAR PEI</div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                        <div className={`flex items-center col-span-2 mt- `}>
-                            <label htmlFor="tituloActividad" className="mr-2 text-green-500">Titulo de la Actividad:</label>
-                            <input
-                                type="text"
-                                id="tituloActividad"
-                                name="tituloActividad"
-                                value={formData.tituloActividad}
-                                onChange={(event) => {
-                                    const inputValue = event.target.value;
-                                    if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
-                                        handleInputChange(event);
-                                    }
-                                }}
-                                className={`w-full border ${formData.tituloActividadEmpty ? 'border-red-500' : 'border-gray-300'} rounded-md py-1 px-3 text-green-700`}
-                            />
-                        </div>
+                    <div className='mt-4 text-2xl text-green-600 text-center font-semibold font-sans'>Ingreso de Actividades</div>
 
-                        <div className="flex items-center">
-                            <label htmlFor="ObjetivoPei" className="mr-2 text-green-500">Objetivo PEI:</label>
-                            <select
-                                id="ObjetivoPei"
-                                name="ObjetivoPei"
-                                value={formData.ObjetivoPei}
-                                onChange={handleInputChange}
-                                className={`w-full p-2 ${formData.ObjetivoPeiEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
+                    <div className="grid grid-cols-3 md:grid-cols-1 gap-4 mt-4">
 
-                            >
-                                <option value="" className="whitespace-nowrap">Seleccione...</option>
-                                <option value="ObjetivoPeiUno" className="whitespace-nowrap">Conservar y usar</option>
-                                <option value="ObjetivoPeiDos" className="whitespace-nowrap">Opción 2</option>
-                                {/* Opciones del select */}
-                            </select>
-                        </div>
+                        {/* Actividad 1 */}
+                        <button
+                            type="button"
+                            className="w-full md:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded md:mr-4"
+                            onClick={() => mostrarActividad('actividadUno')}
+                        >
+                            <span className="pl-2 mx-1">Agregar Actividad Uno</span>
+                        </button>
 
-                        <div className="flex items-center">
-                            <label htmlFor="resultadoEsperado" className="mr-2 text-green-500">Resultado Esperado:</label>
-                            <select
-                                id="resultadoEsperado"
-                                name="resultadoEsperado"
-                                value={formData.resultadoEsperado}
-                                onChange={handleInputChange}
-                                className={`w-full p-2 ${formData.resultadoEsperadoEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
-                            >
-                                <option value="" className="whitespace-nowrap">Seleccione...</option>
-                                <option value="resultadoEsperado" className="whitespace-nowrap">Ejemplo 1</option>
-                                <option value="resultadoEsperado" className="whitespace-nowrap">Ejemplo 2</option>
-                                {/* Opciones del select */}
-                            </select>
-                        </div>
+                        {/* Actividad 2 */}
+                        <button
+                            type="button"
+                            className="w-full md:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded md:mr-4"
+                            onClick={() => mostrarActividad('actividadDos')}
+                        >
+                            <span className="pl-2 mx-1">Agregar Actividad Dos</span>
+                        </button>
 
+                        {/* Actividad 3 */}
+                        <button
+                            type="button"
+                            className="w-full md:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded md:mr-4"
+                            onClick={() => mostrarActividad('actividadTres')}
+                        >
+                            <span className="pl-2 mx-1">Agregar Actividad Tres</span>
+                        </button>
                     </div>
+                    {['actividadUno', 'actividadDos', 'actividadTres'].map((actividad) => (
+                        formData[`${actividad}Visible`] && (
+                            <div key={actividad} className="fixed z-10 inset-0 overflow-y-auto">
+                                <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                                    <div className="fixed inset-0 transition-opacity">
+                                        <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                                    </div>
+
+                                    <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
+
+                                    <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                                        <div className="bg-white p-4">
+                                            <label htmlFor={`nombre${actividad}`} className="mr-2 text-green-500">
+                                                Nombre:
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id={`nombre${actividad}`}
+                                                name={`nombre${actividad}`}
+                                                value={formData[`nombre${actividad}`]}
+                                                onChange={handleInputChange}
+                                                className="w-full p-2 border-gray-300 border rounded"
+                                            />
+                                            <div className="mt-4 flex justify-center">
+                                                <button
+                                                    type="submit"
+                                                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded md:mr-4"
+                                                >
+                                                    Agregar
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => ocultarActividad(actividad)}
+                                                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                                                >
+                                                    Regresar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    ))}
 
                     <div className="mt-4 flex justify-center col-span-2 mt-3">
                         <button
