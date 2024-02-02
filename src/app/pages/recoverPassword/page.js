@@ -60,7 +60,7 @@ const Formulario = () => {
                             error={Boolean(error)}
                         />
                     </form>
-                    <Button className='bg-green-900 p-3' variant="contained" disableElevation size="large">
+                    <Button className='bg-green-900 p-2' variant="contained" disableElevation size="large">
                         Recuperar contraseña
                     </Button>
                     <a className="text-center" href="/pages/login"><strong>Iniciar sesión</strong></a>
