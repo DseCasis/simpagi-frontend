@@ -1,14 +1,19 @@
 "use client"
 
 import React from "react";
-import exel from "./pages/exel/page";
+import Exel from "./pages/exel/page";
 import Login from "./pages/login/page"
+import UserPerfil from './pages/userPerfil/page'
+import SsideBar from'./components/Ssidebar'
+
+
 
 export default function Home() {
 
 
     
         
-            <Login></Login>
+          
+            <SsideBar></SsideBar>
   
 }
