@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, lazy } from 'react';
 import Button from "@mui/material/Button";
 import CircularProgress from '@mui/material/CircularProgress';
 
