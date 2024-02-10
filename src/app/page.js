@@ -1,19 +1,17 @@
 "use client"
 
 import React from "react";
-import { TabsDefault } from "./components/Topbar";
-import { SimpleFooter } from "./components/LowerBar";
-import { DefaultSidebar} from "./components/SideBar";
+import Topbar from "./components/Topbar";
+import LowerBar from "./components/LowerBar";
 
 
-export default function Home() {
+export default function home() {
 
 
     return (
         <div>
-            <header><TabsDefault></TabsDefault></header>
-            <DefaultSidebar></DefaultSidebar>
-            <footer><SimpleFooter></SimpleFooter></footer>
+            <header><Topbar></Topbar></header>
+            <footer><LowerBar></LowerBar></footer>
         </div>
     )
 }

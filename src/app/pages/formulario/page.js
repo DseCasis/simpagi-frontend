@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import Topbar from '@/app/components/Topbar';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import Button from "@mui/material/Button";
+
 
 function Formulario() {
   const initialState = {
@@ -137,15 +139,21 @@ function Formulario() {
       <Topbar></Topbar>
 
       {/* Este div de abajo contiene todo el formulario Ingresar PEI */}
-
-      <div className="mt-4 px-20">
-        <p class="text-4xl text-white text-center font-semibold font-sans">
+        
+      <div className="px-20 ">
+        <p class="p-4 text-4xl text-white text-center font-semibold font-sans">
           REGISTRO DE USUARIO
         </p>
+        <div className='py-2'>
+        <img  className=" float-left px-1  " style={{ width: '45px', height: '33px'}} src="https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photo/12818535/image/2347bfda38b1ace37cd7cc4777aa454a" alt=""/>
+        <Button className=' bg-green-800 p-1 text-gray-100 w-24 min-w-full md:min-w-0' variant="contained" href='/pages/exel' disableElevation size="lg">
+         ARCHIVOS </Button>
+         </div>
+
         <div className="">
           <form onSubmit={handleSubmit}>
 
-            <div className="shadow-md p-4 border-4 border-green-800 mt-4 bg-gray-100">
+            <div className="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg mt-4 bg-gray-100">
               <div className="text-black font-semibold font-sans grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
 
                 <div className="flex items-center">
@@ -302,7 +310,7 @@ function Formulario() {
             {/*Este div con class m4 hace un espacio entre los bordes hay como 5 iguales en el código*/}
             <div class="mt-4"></div>
 
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
 
               <div class="text-black font-semibold font-sans grid grid-cols-4 grid-rows-1 gap-4">
 
@@ -377,7 +385,7 @@ function Formulario() {
 
             <div class="mt-4"></div>
             {/*El Div de acá abajo tiene todo el 3er formulario*/}
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
 
               <div class="text-black font-semibold font-sans grid grid-cols-3 grid-rows-1 gap-4">
 
@@ -435,7 +443,7 @@ function Formulario() {
             {/*El Div de acá arriba cierra todo el 3er formulario*/}
             <div class="mt-4"></div>
             {/*El Div de acá abajo inicia todo el 4to formulario*/}
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
 
               <div class="text-black font-semibold font-sans grid grid-cols-3 grid-rows-2 gap-4">
 
@@ -508,7 +516,7 @@ function Formulario() {
             {/*El Div de acá arriba cierra todo el 4to formulario*/}
             <div class="mt-4"></div>
             {/*El Div de acá abajo abre todo el 5to formulario*/}
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
 
               <div class="text-black font-semibold font-sans grid grid-cols-3 grid-rows-2 gap-4">
 
@@ -579,7 +587,7 @@ function Formulario() {
 
             <div class="mt-4"></div>
             {/*El Div de acá abajo abre todo el 6to formulario*/}
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
 
               <div class="text-black font-semibold font-sans grid grid-cols-3 grid-rows-1 gap-4">
 
@@ -635,7 +643,7 @@ function Formulario() {
             <div class="mt-4"></div>
             {/*El Div de acá abajo pertenece a los botones*/}
 
-            <div class="shadow-md p-4 border-4 border-green-800 bg-gray-100">
+            <div class="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg bg-gray-100">
               <div class="flex justify-center">
                 <button
                   type="submit"
