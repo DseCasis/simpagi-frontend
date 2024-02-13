@@ -41,8 +41,14 @@ function Formulario() {
 
   ///Cargar Datos
   const [provincias, setProvincias] = useState([]);
+  const [nivelAcademico, setNivelAcademico] = useState([]);
+  const [etnico, setEtnico] = useState([]);
+  const [nacionalidades, setNacionalidades] = useState([]);
+  const [cuartoNivel, setCuartoNivel] = useState([]);
+  const [localidadAso, setLocalidadAso] = useState([]);
 
   useEffect(() => {
+    // 1era solicitud Axios
     axios.get('http://127.0.0.1:8000/api/provinces')
       .then(response => {
         // Extraer solo los nombres de las provincias
@@ -52,7 +58,53 @@ function Formulario() {
       .catch(error => {
         console.error('Error al obtener datos de provincias:', error);
       });
+    // 2da solicitud Axios
+    axios.get('http://127.0.0.1:8000/api/academics')
+      .then(response => {
+        const nombreAcademico = response.data.map(formacionAcademica => formacionAcademica.name);
+        setNivelAcademico(nombreAcademico);
+      })
+      .catch(error => {
+        console.error('Error al obtener otra data:', error);
+      });
+    // 3era solicitud Axios
+    axios.get('http://127.0.0.1:8000/api/ethnics')
+      .then(response => {
+        const etnico = response.data.map(grupoEtnico => grupoEtnico.name);
+        setEtnico(etnico);
+      })
+      .catch(error => {
+        console.error('Error al obtener otra data:', error);
+      });
+    // 4ta solicitud Axios
+    axios.get('http://127.0.0.1:8000/api/nationalities')
+      .then(response => {
+        const nacionalidades = response.data.map(nacionalidad => nacionalidad.name);
+        setNacionalidades(nacionalidades);
+      })
+      .catch(error => {
+        console.error('Error al obtener otra data:', error);
+      });
+    // 5ta solicitud Axios
+    axios.get('http://127.0.0.1:8000/api/fourthLevel')
+      .then(response => {
+        const cuartoNivel = response.data.map(tipoCuartoNivel => tipoCuartoNivel.name);
+        setCuartoNivel(cuartoNivel);
+      })
+      .catch(error => {
+        console.error('Error al obtener otra data:', error);
+      });
+    // 6ta solicitud Axios
+    axios.get('http://127.0.0.1:8000/api/locations')
+      .then(response => {
+        const localidadAso = response.data.map(localidadAsosiada => localidadAsosiada.acronym);
+        setLocalidadAso(localidadAso);
+      })
+      .catch(error => {
+        console.error('Error al obtener otra data:', error);
+      });
   }, []);
+
   ////Aquí termina
 
   //Aqui se asignan las validaciones, para que vayan por separado, o si no uno valida a todos los campos
@@ -201,9 +253,9 @@ function Formulario() {
                     className={`w-full p-2 ${formData.formacionAcademicaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    <option value="formacionAcademicaUno" className="whitespace-nowrap">Ejemplo</option>
-                    <option value="formacionAcademicaDos" className="whitespace-nowrap">Ejemplo 2</option>
-                    {/* Opciones del select */}
+                    {nivelAcademico.map((formacionAcademica, index) => (
+                      <option key={index} value={formacionAcademica} className="whitespace-nowrap">{formacionAcademica}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -222,9 +274,9 @@ function Formulario() {
                     className={`w-full p-2 ${formData.grupoEtnicoEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 `}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    <option value="grupoEtnicoUno" className="whitespace-nowrap">Ejemplo 1</option>
-                    <option value="grupoEtnicoDos" className="whitespace-nowrap">Ejemplo 2</option>
-                    {/* Opciones del select */}
+                    {etnico.map((grupoEtnico, index) => (
+                      <option key={index} value={grupoEtnico} className="whitespace-nowrap">{grupoEtnico}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -255,9 +307,9 @@ function Formulario() {
                     className={`w-full p-2 ${formData.nacionalidadEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    <option value="nacionalidadUno" className="whitespace-nowrap">Ejemplo 1</option>
-                    <option value="nacionalidadDos" className="whitespace-nowrap">Ejemplo 2</option>
-                    {/* Opciones del select */}
+                    {nacionalidades.map((nacionalidad, index) => (
+                      <option key={index} value={nacionalidad} className="whitespace-nowrap">{nacionalidad}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -305,9 +357,9 @@ function Formulario() {
                     className={`w-full p-2 ${formData.tipoCuartoNivelEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    <option value="tipoCuartoNivelUno" className="whitespace-nowrap">Ejemplo 1</option>
-                    <option value="tipoCuartoNivelDos" className="whitespace-nowrap">Ejemplo 2</option>
-                    {/* Opciones del select */}
+                    {cuartoNivel.map((tipoCuartoNivel, index) => (
+                      <option key={index} value={tipoCuartoNivel} className="whitespace-nowrap">{tipoCuartoNivel}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -342,9 +394,9 @@ function Formulario() {
                     className={`w-full p-2 ${formData.localidadAsosiadaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    <option value="localidadAsosiadaUno" className="whitespace-nowrap">Ejemplo 1</option>
-                    <option value="localidadAsosiadaDos" className="whitespace-nowrap">Ejemplo 2</option>
-                    {/* Opciones del select */}
+                    {localidadAso.map((localidadAsosiada, index) => (
+                      <option key={index} value={localidadAsosiada} className="whitespace-nowrap">{localidadAsosiada}</option>
+                    ))}
                   </select>
                 </div>
 
