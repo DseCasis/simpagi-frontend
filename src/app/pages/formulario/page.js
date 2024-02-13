@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Topbar from '@/app/components/Topbar';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import axios from 'axios';
 import Button from "@mui/material/Button";
 
 
@@ -37,6 +38,23 @@ function Formulario() {
     actividad: '',
     proceso: '',
   };
+
+  ///Cargar Datos
+  const [provincias, setProvincias] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/provinces')
+      .then(response => {
+        // Extraer solo los nombres de las provincias
+        const nombresProvincias = response.data.map(provincia => provincia.name);
+        setProvincias(nombresProvincias);
+      })
+      .catch(error => {
+        console.error('Error al obtener datos de provincias:', error);
+      });
+  }, []);
+  ////Aquí termina
+
   //Aqui se asignan las validaciones, para que vayan por separado, o si no uno valida a todos los campos
   const [formData, setFormData] = useState(initialState);
 
@@ -139,16 +157,16 @@ function Formulario() {
       <Topbar></Topbar>
 
       {/* Este div de abajo contiene todo el formulario Ingresar PEI */}
-        
+
       <div className="px-20 ">
         <p class="p-4 text-4xl text-white text-center font-semibold font-sans">
           REGISTRO DE USUARIO
         </p>
         <div className='py-2'>
-        <img  className=" float-left px-1  " style={{ width: '45px', height: '33px'}} src="https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photo/12818535/image/2347bfda38b1ace37cd7cc4777aa454a" alt=""/>
-        <Button className=' bg-green-800 p-1 text-gray-100 w-24 min-w-full md:min-w-0' variant="contained" href='/pages/exel' disableElevation size="lg">
-         ARCHIVOS </Button>
-         </div>
+          <img className=" float-left px-1  " style={{ width: '45px', height: '33px' }} src="https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photo/12818535/image/2347bfda38b1ace37cd7cc4777aa454a" alt="" />
+          <Button className=' bg-green-800 p-1 text-gray-100 w-24 min-w-full md:min-w-0' variant="contained" href='/pages/exel' disableElevation size="lg">
+            ARCHIVOS </Button>
+        </div>
 
         <div className="">
           <form onSubmit={handleSubmit}>
@@ -356,9 +374,9 @@ function Formulario() {
                     className={`w-full p-2 ${formData.provinciaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    <option value="provinciaUno" className="whitespace-nowrap">Ejemplo 1</option>
-                    <option value="provinciaDos" className="whitespace-nowrap">Ejemplo 2</option>
-                    {/* Opciones del select */}
+                    {provincias.map((provincia, index) => (
+                      <option key={index} value={provincia} className="whitespace-nowrap">{provincia}</option>
+                    ))}
                   </select>
                 </div>
 
