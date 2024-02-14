@@ -1,8 +1,7 @@
 "use client"
 
 import React from "react";
-import Topbar from "./components/Topbar";
-import LowerBar from "./components/LowerBar";
+import UserList from "./pages/userList/Page";
 
 
 export default function home() {
@@ -10,8 +9,7 @@ export default function home() {
 
     return (
         <div>
-            <header><Topbar></Topbar></header>
-            <footer><LowerBar></LowerBar></footer>
+            <UserList></UserList>
         </div>
     )
 }
