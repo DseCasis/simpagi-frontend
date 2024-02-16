@@ -1,95 +1,81 @@
 "use client"
 
-import TextField from "@mui/material/TextField";
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import Button from "@mui/material/Button";
+import axios from 'axios';
 
-export default function Formulario() {
-  const [email, setEmail] = useState("");
-  const [isValidEmail, setIsValidEmail] = useState(true);
+const FileUpload = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleEmailChange = (event) => {
-    const inputEmail = event.target.value;
-    setEmail(inputEmail);
+  const handleUpload = async () => {
+    if (selectedFile) {
+      try {
+        const formData = new FormData();
+        formData.append('file', selectedFile);
 
-    // Validar el formato del correo electrónico
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsValidEmail(emailRegex.test(inputEmail));
-  };
+        const response = await axios.post('/import', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Realizar alguna acción con los datos del formulario si es necesario
-    if (isValidEmail) {
-      // Tu lógica de manejo del formulario aquí
-      console.log("Correo electrónico válido:", email);
+        console.log(response.data); // Maneja la respuesta del servidor
+      } catch (error) {
+        console.error(error);
+      }
     } else {
-      console.log("Correo electrónico no válido");
+      console.log("Por favor, selecciona un archivo.");
     }
   };
 
   return (
     <div className="flex flex-wrap min-h-screen w-full content-center justify-center py-10 bg-gradient-to-r from-slate-900 via-green-900 to-slate-900">
-      <div className="w-2/4 h-5/6 flex justify-center border-2 rounded-md border md:shadow-2xl md:shadow-stone-500 bg-gray-200 ">
-        <div className="w-1/2 flex flex-col p-12 space-y-2">
+      <div className="w-2/4 h-5/6 flex justify-center border-2 rounded-md border md:shadow-2xl md:shadow-stone-500 bg-gray-200">
+        <div className="w-1/2 flex  flex-col p-12 space-y-4">
           <h1 className="flex-1 text-xl text-center font-semibold pb-0">
             Sistema Simplificado de Planificación y Gestión de la investigación
           </h1>
-          <div class="px-8">
-            <img src="/logo.png" alt="Logo" />
+          <div className="px-2">
+            <img src="public/logo.png" alt="Logo" />
           </div>
 
-          <form
-            className="w-full space-y-4 flex flex-col justify-center pb-2"
-            onSubmit={handleSubmit}
+          <Button
+            component="label"
+            className='bg-blue-500 p-1 text-gray-100'
+            htmlFor="fileInput"
           >
-            <a className="text-center text-gray-400">Ingrese sus credenciales</a>
-
-            <TextField
-              label="Correo electrónico"
-              id="outlined-size-small"
-              name="email"
-              type="email"
-              required
-              error={!isValidEmail}
-              helperText={!isValidEmail && "Correo electrónico no válido"}
-              value={email}
-              onChange={handleEmailChange}
+            Seleccionar Archivo
+            <input
+              type="file"
+              id="fileInput"
+              style={{ display: 'none' }}
+              onChange={(event) => setSelectedFile(event.target.files[0])}
             />
+          </Button>
 
-            <TextField
-              label="Contraseña"
-              type="password"
-              id="password"
-              name="password"
-              required
-            />
+          <Button
+            className='bg-green-600 p-1 text-gray-100'
+            variant="contained"
+            disableElevation
+            size="medium"
+            onClick={handleUpload}
+          >
+            Exportar
+          </Button>
 
-            <Button
-              type="submit"
-              className="bg-blue-900 p-3"
-              variant="contained"
-              disableElevation
-              size="large"
-            >
-              Ingresar
-            </Button>
-
-            <a className="text-center" href="/pages/recoverPassword">
-              ¿Olvidaste la contraseña?
-            </a>
-          </form>
->>>>>>> cb4fc68544becdee7e2d65f4ff5785388e62b604
-        </div>
-        <div className="w-1/2 rounded-r-md bg-red-500">
-          <img
-            className="w-full h-full object-cover rounded-r-md"
-            src="/trigo.png"
-            alt=""
-          />
+          <Button
+            className='bg-red-600 p-1 text-gray-100'
+            variant="contained"
+            disableElevation
+            size="sm"
+            href="/pages/formulario"
+          >
+            Cancelar
+          </Button>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default FileUpload;

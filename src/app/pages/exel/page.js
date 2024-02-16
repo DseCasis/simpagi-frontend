@@ -36,7 +36,7 @@ const FileUpload = () => {
             Sistema Simplificado de Planificación y Gestión de la investigación
           </h1>
           <div className="px-2">
-            <img src="public/logo.png" alt="Logo" />
+            <img src="/logo.png" alt="Logo" />
           </div>
 
           <Button
