@@ -41,9 +41,8 @@ function Formulario() {
   };
 
   ///Cargar Datos
-  //const [provincias, setProvincias] = useState([]);
   const [nivelAcademico, setNivelAcademico] = useState([]);
-  const [etnico, setEtnico] = useState([]);
+  const [ethnic, setethnic] = useState([]);
   const [nacionalidades, setNacionalidades] = useState([]);
   const [cuartoNivel, setCuartoNivel] = useState([]);
   const [localidadAso, setLocalidadAso] = useState([]);
@@ -69,8 +68,8 @@ function Formulario() {
     // 2da solicitud Axios
     axios.get('http://127.0.0.1:8000/api/ethnics')
       .then(response => {
-        const etnico = response.data.map(ethnicGroup => ethnicGroup.name);
-        setEtnico(etnico);
+        const ethnic = response.data.map(ethnicGroup => ethnicGroup.name);
+        setethnic(ethnic);
       })
       .catch(error => {
         console.error('Error al obtener otra data:', error);
@@ -467,7 +466,7 @@ function Formulario() {
                 <div className="flex items-center">
                   <label htmlFor="email" className="mr-2">Email:</label>
                   <input
-                    type="text"
+                    type="email"
                     id="email"
                     name="email"
                     value={formData.email}
@@ -594,7 +593,7 @@ function Formulario() {
 
 
                 <div className="flex items-center">
-                  <label htmlFor="ethnicGroup" className="mr-2">ethnic Group:</label>
+                  <label htmlFor="ethnicGroup" className="mr-2">Grupo Etnico:</label>
                   <select
                     id="ethnicGroup"
                     name="ethnicGroup"
@@ -603,7 +602,7 @@ function Formulario() {
                     className={`w-full p-2 ${formData.ethnicGroupEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {etnico.map((ethnicGroup, index) => (
+                    {ethnic.map((ethnicGroup, index) => (
                       <option key={index} value={ethnicGroup} className="whitespace-nowrap">{ethnicGroup}</option>
                     ))}
                   </select>
