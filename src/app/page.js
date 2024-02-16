@@ -1,17 +1,15 @@
 "use client"
 
 import React from "react";
-import Topbar from "./components/Topbar";
+import UserList from "./pages/userList/Page";
 
 
-export default function Home(){
+export default function home() {
 
 
-    return(
-        <div className="App">
-            
-            <Topbar></Topbar>
-        
+    return (
+        <div>
+            <UserList></UserList>
         </div>
     )
 }
