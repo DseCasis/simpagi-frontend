@@ -59,7 +59,7 @@ function Formulario() {
     // 1er solicitud Axios
     axios.get('http://127.0.0.1:8000/api/academics')
       .then(response => {
-        const nombreAcademico = response.data.map(academicFormation => academicFormation.name);
+        const nombreAcademico = response.data;
         setNivelAcademico(nombreAcademico);
       })
       .catch(error => {
@@ -68,7 +68,7 @@ function Formulario() {
     // 2da solicitud Axios
     axios.get('http://127.0.0.1:8000/api/ethnics')
       .then(response => {
-        const ethnic = response.data.map(ethnicGroup => ethnicGroup.name);
+        const ethnic = response.data; // Aquí suponemos que la respuesta ya contiene los datos con sus respectivos ids
         setethnic(ethnic);
       })
       .catch(error => {
@@ -77,7 +77,7 @@ function Formulario() {
     // 3er solicitud Axios
     axios.get('http://127.0.0.1:8000/api/nationalities')
       .then(response => {
-        const nacionalidades = response.data.map(nationality => nationality.name);
+        const nacionalidades = response.data;
         setNacionalidades(nacionalidades);
       })
       .catch(error => {
@@ -86,7 +86,7 @@ function Formulario() {
     // 4ta solicitud Axios
     axios.get('http://127.0.0.1:8000/api/fourthLevel')
       .then(response => {
-        const cuartoNivel = response.data.map(fourthLevel => fourthLevel.name);
+        const cuartoNivel = response.data;
         setCuartoNivel(cuartoNivel);
       })
       .catch(error => {
@@ -95,7 +95,7 @@ function Formulario() {
     // 5ta solicitud Axios
     axios.get('http://127.0.0.1:8000/api/locations')
       .then(response => {
-        const localidadAso = response.data.map(associated_location => associated_location.acronym);
+        const localidadAso = response.data;
         setLocalidadAso(localidadAso);
       })
       .catch(error => {
@@ -104,7 +104,7 @@ function Formulario() {
     // 6ta solicitud Axios
     axios.get('http://127.0.0.1:8000/api/funds')
       .then(response => {
-        const fondo = response.data.map(funding => funding.name);
+        const fondo = response.data;
         setFondo(fondo);
       })
       .catch(error => {
@@ -113,7 +113,7 @@ function Formulario() {
     // 7ma solicitud Axios
     axios.get('http://127.0.0.1:8000/api/positions')
       .then(response => {
-        const posicion = response.data.map(position => position.name);
+        const posicion = response.data;
         setPosicion(posicion);
       })
       .catch(error => {
@@ -122,7 +122,7 @@ function Formulario() {
     // 8va solicitud Axios
     axios.get('http://127.0.0.1:8000/api/process')
       .then(response => {
-        const procesos = response.data.map(process => process.name);
+        const procesos = response.data;
         setProcesos(procesos);
       })
       .catch(error => {
@@ -131,7 +131,7 @@ function Formulario() {
     // 9na solicitud Axios
     axios.get('http://127.0.0.1:8000/api/regimen')
       .then(response => {
-        const regimens = response.data.map(regimen => regimen.name);
+        const regimens = response.data;
         setRegimens(regimens);
       })
       .catch(error => {
@@ -140,7 +140,7 @@ function Formulario() {
     // 10ma solicitud Axios
     axios.get('http://127.0.0.1:8000/api/units')
       .then(response => {
-        const unidades = response.data.map(unit => unit.name);
+        const unidades = response.data;
         setUnidades(unidades);
       })
       .catch(error => {
@@ -149,7 +149,7 @@ function Formulario() {
     // 11va solicitud Axios
     axios.get('http://127.0.0.1:8000/api/managements')
       .then(response => {
-        const gestion = response.data.map(management => management.name);
+        const gestion = response.data;
         setGestion(gestion);
       })
       .catch(error => {
@@ -158,7 +158,7 @@ function Formulario() {
     // 12va solicitud Axios
     axios.get('http://127.0.0.1:8000/api/areaTa')
       .then(response => {
-        const areaTa = response.data.map(area_ta => area_ta.name);
+        const areaTa = response.data;
         setAreaTa(areaTa);
       })
       .catch(error => {
@@ -167,7 +167,7 @@ function Formulario() {
     // 13va solicitud Axios
     axios.get('http://127.0.0.1:8000/api/subArea')
       .then(response => {
-        const subArea = response.data.map(area => area.name);
+        const subArea = response.data;
         setSubArea(subArea);
       })
       .catch(error => {
@@ -176,7 +176,7 @@ function Formulario() {
     // 14va solicitud Axios
     axios.get('http://127.0.0.1:8000/api/priorityGroup')
       .then(response => {
-        const grupoPri = response.data.map(priorityGroup => priorityGroup.name);
+        const grupoPri = response.data;
         setGrupoPri(grupoPri);
       })
       .catch(error => {
@@ -569,8 +569,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.priorityGroupEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {grupoPri.map((priorityGroup, index) => (
-                      <option key={index} value={priorityGroup} className="whitespace-nowrap">{priorityGroup}</option>
+                    {grupoPri.map((priorityGroup) => (
+                      <option key={priorityGroup.id} value={priorityGroup.id} className="whitespace-nowrap">{priorityGroup.name}</option>
                     ))}
                   </select>
                 </div>
@@ -585,8 +585,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.nationalityEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {nacionalidades.map((nationality, index) => (
-                      <option key={index} value={nationality} className="whitespace-nowrap">{nationality}</option>
+                    {nacionalidades.map((nationality) => (
+                      <option key={nationality.id} value={nationality.id} className="whitespace-nowrap">{nationality.name}</option>
                     ))}
                   </select>
                 </div>
@@ -602,12 +602,13 @@ function Formulario() {
                     className={`w-full p-2 ${formData.ethnicGroupEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {ethnic.map((ethnicGroup, index) => (
-                      <option key={index} value={ethnicGroup} className="whitespace-nowrap">{ethnicGroup}</option>
+                    {ethnic.map((ethnicGroup) => (
+                      <option key={ethnicGroup.id} value={ethnicGroup.id} className="whitespace-nowrap">
+                        {ethnicGroup.name}
+                      </option>
                     ))}
                   </select>
                 </div>
-
 
                 <div className="flex items-center">
                   <label htmlFor="academicFormation" className="mr-2">Formación Académica:</label>
@@ -619,8 +620,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.academicFormationEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {nivelAcademico.map((academicFormation, index) => (
-                      <option key={index} value={academicFormation} className="whitespace-nowrap">{academicFormation}</option>
+                    {nivelAcademico.map((academicFormation) => (
+                      <option key={academicFormation.id} value={academicFormation.id} className="whitespace-nowrap">{academicFormation.name}</option>
                     ))}
                   </select>
                 </div>
@@ -635,8 +636,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.fourthLevelEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {cuartoNivel.map((fourthLevel, index) => (
-                      <option key={index} value={fourthLevel} className="whitespace-nowrap">{fourthLevel}</option>
+                    {cuartoNivel.map((fourthLevel) => (
+                      <option key={fourthLevel.id} value={fourthLevel.id} className="whitespace-nowrap">{fourthLevel.name}</option>
                     ))}
                   </select>
                 </div>
@@ -662,8 +663,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.positionEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {posicion.map((position, index) => (
-                      <option key={index} value={position} className="whitespace-nowrap">{position}</option>
+                    {posicion.map((position) => (
+                      <option key={position.id} value={position.id} className="whitespace-nowrap">{position.name}</option>
                     ))}
                   </select>
                 </div>
@@ -679,8 +680,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.fundingEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {fondo.map((funding, index) => (
-                      <option key={index} value={funding} className="whitespace-nowrap">{funding}</option>
+                    {fondo.map((funding) => (
+                      <option key={funding.id} value={funding.id} className="whitespace-nowrap">{funding.name}</option>
                     ))}
                   </select>
                 </div>
@@ -695,8 +696,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.regimenEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {regimens.map((regimen, index) => (
-                      <option key={index} value={regimen} className="whitespace-nowrap">{regimen}</option>
+                    {regimens.map((regimen) => (
+                      <option key={regimen.id} value={regimen.id} className="whitespace-nowrap">{regimen.name}</option>
                     ))}
                   </select>
                 </div>
@@ -712,8 +713,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.processEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {procesos.map((process, index) => (
-                      <option key={index} value={process} className="whitespace-nowrap">{process}</option>
+                    {procesos.map((process) => (
+                      <option key={process.id} value={process.id} className="whitespace-nowrap">{process.name}</option>
                     ))}
                   </select>
                 </div>
@@ -738,8 +739,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.unitEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {unidades.map((unit, index) => (
-                      <option key={index} value={unit} className="whitespace-nowrap">{unit}</option>
+                    {unidades.map((unit) => (
+                      <option key={unit.id} value={unit.id} className="whitespace-nowrap">{unit.name}</option>
                     ))}
                   </select>
                 </div>
@@ -755,8 +756,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.managementEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {gestion.map((management, index) => (
-                      <option key={index} value={management} className="whitespace-nowrap">{management}</option>
+                    {gestion.map((management) => (
+                      <option key={management.id} value={management.id} className="whitespace-nowrap">{management.name}</option>
                     ))}
                   </select>
                 </div>
@@ -782,8 +783,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.areaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {subArea.map((area, index) => (
-                      <option key={index} value={area} className="whitespace-nowrap">{area}</option>
+                    {subArea.map((area) => (
+                      <option key={area.id} value={area.id} className="whitespace-nowrap">{area.name}</option>
                     ))}
                   </select>
                 </div>
@@ -798,8 +799,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.area_taEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {areaTa.map((area_ta, index) => (
-                      <option key={index} value={area_ta} className="whitespace-nowrap">{area_ta}</option>
+                    {areaTa.map((area_ta) => (
+                      <option key={area_ta.id} value={area_ta.id} className="whitespace-nowrap">{area_ta.name}</option>
                     ))}
                   </select>
                 </div>
@@ -814,8 +815,8 @@ function Formulario() {
                     className={`w-full p-2 ${formData.associated_locationEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {localidadAso.map((associated_location, index) => (
-                      <option key={index} value={associated_location} className="whitespace-nowrap">{associated_location}</option>
+                    {localidadAso.map((associated_location) => (
+                      <option key={associated_location.id} value={associated_location.id} className="whitespace-nowrap">{associated_location.name}</option>
                     ))}
                   </select>
                 </div>
