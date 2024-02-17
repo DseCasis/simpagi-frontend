@@ -595,7 +595,7 @@ function Formulario() {
 
 
                 <div className="flex items-center">
-                  <label htmlFor="ethnicGroup" className="mr-2">Grupo Etnico:</label>
+                  <label htmlFor="ethnicGroup" className="mr-2">Grupo Étnico:</label>
                   <select
                     id="ethnicGroup"
                     name="ethnicGroup"
@@ -656,7 +656,7 @@ function Formulario() {
               <div class="text-black font-semibold font-sans grid grid-cols-2 grid-rows-2 gap-4">
 
                 <div className="flex items-center">
-                  <label htmlFor="position" className="mr-2">Posicion:</label>
+                  <label htmlFor="position" className="mr-2">Posición:</label>
                   <select
                     id="position"
                     name="position"
@@ -689,7 +689,7 @@ function Formulario() {
                 </div>
 
                 <div className="flex items-center">
-                  <label htmlFor="regimen" className="mr-2">Regimen:</label>
+                  <label htmlFor="regimen" className="mr-2">Régimen:</label>
                   <select
                     id="regimen"
                     name="regimen"
@@ -792,7 +792,7 @@ function Formulario() {
                 </div>
 
                 <div className="flex items-center">
-                  <label htmlFor="area_ta" className="mr-2">Area TA:</label>
+                  <label htmlFor="area_ta" className="mr-2">Área TA:</label>
                   <select
                     id="area_ta"
                     name="area_ta"
