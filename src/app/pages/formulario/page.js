@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import Topbar from '@/app/components/Topbar';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import axios from 'axios';
@@ -22,6 +21,7 @@ function Formulario() {
     email: '',
     esigefActivity: '',
     salary: '',
+    ///Eliminar password
     password: '',
     returnedMigrant: '',
     priorityGroup: '',
@@ -35,7 +35,7 @@ function Formulario() {
     process: '',
     unit: '',
     management: '',
-    area: '',
+    subarea: '',
     area_ta: '',
     associated_location: '',
   };
@@ -97,6 +97,7 @@ function Formulario() {
       .then(response => {
         const localidadAso = response.data;
         setLocalidadAso(localidadAso);
+        console.log(localidadAso)
       })
       .catch(error => {
         console.error('Error al obtener otra data:', error);
@@ -208,6 +209,7 @@ function Formulario() {
       emailEmpty: formData.email.trim() === '',
       esigefActivityEmpty: formData.esigefActivity.trim() === '',
       salaryEmpty: formData.salary.trim() === '',
+      ///Eliminar Password
       passwordEmpty: formData.password.trim() === '',
       returnedMigrantEmpty: formData.returnedMigrant.trim() === '',
       priorityGroupEmpty: formData.priorityGroup.trim() === '',
@@ -221,7 +223,7 @@ function Formulario() {
       processEmpty: formData.process.trim() === '',
       unitEmpty: formData.unit.trim() === '',
       managementEmpty: formData.management.trim() === '',
-      areaEmpty: formData.area.trim() === '',
+      subareaEmpty: formData.subarea.trim() === '',
       area_taEmpty: formData.area_ta.trim() === '',
       associated_locationEmpty: formData.associated_location.trim() === '',
     };
@@ -299,20 +301,15 @@ function Formulario() {
 
     <div className='bg-gradient-to-r from-slate-900 via-green-900 to-slate-900'>
 
-      {/* El div de arriba, contiene el topbar */}
-      <Topbar></Topbar>
-
       {/* Este div de abajo contiene todo el formulario Ingresar PEI */}
 
       <div className="px-20 ">
         <p class="p-4 text-4xl text-white text-center font-semibold font-sans">
           REGISTRO DE USUARIO
         </p>
-        <div className='py-2'>
-          <img className=" float-left px-1  " style={{ width: '45px', height: '33px' }} src="https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photo/12818535/image/2347bfda38b1ace37cd7cc4777aa454a" alt="" />
-          <Button className=' bg-green-800 p-1 text-gray-100 w-24 min-w-full md:min-w-0' variant="contained" href='/pages/exel' disableElevation size="lg">
-            ARCHIVOS </Button>
-        </div>
+        {/*Debajo de esta lína estaba el anterior ícono de Excel */}
+
+        {/*Aqui cierra el código de la línea de Excel*/}
 
         <div className="">
           <form onSubmit={handleSubmit}>
@@ -334,7 +331,7 @@ function Formulario() {
                       }
                     }}
                     className={`w-full p-2 ${formData.dniEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
-                  />
+                    maxLength="10" />
                 </div>
 
                 <div className="flex items-center">
@@ -346,11 +343,12 @@ function Formulario() {
                     value={formData.name}
                     onChange={(event) => {
                       const inputValue = event.target.value;
-                      if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
+                      if (/^[a-zA-ZñÑ\s]*$/.test(inputValue) || inputValue === '') {
                         handleInputChange(event);
                       }
                     }}
                     className={`w-full border ${formData.nameEmpty ? 'border-red-500' : 'border-gray-300'} rounded-md py-1 px-3 text-green-700`}
+                    maxLength="250"
                   />
                 </div>
 
@@ -368,7 +366,7 @@ function Formulario() {
                       }
                     }}
                     className={`w-full border ${formData.genderEmpty ? 'border-red-500' : 'border-gray-300'} rounded-md py-1 px-3 text-green-700`}
-                  />
+                    maxLength="30" />
                 </div>
 
                 <div className="flex items-center">
@@ -384,7 +382,7 @@ function Formulario() {
                 </div>
 
                 <div className="flex items-center">
-                  <label htmlFor="hiteDate" className="mr-2">Hite Date:</label>
+                  <label htmlFor="hiteDate" className="mr-2">Fecha Ingreso Iniap:</label>
                   <input
                     type="date"
                     id="hiteDate"
@@ -421,7 +419,7 @@ function Formulario() {
                     value={formData.senescytRegistrationNumber}
                     onChange={(event) => {
                       const inputValue = event.target.value;
-                      if (/^[0-9]*$/.test(inputValue) || inputValue === '') {
+                      if (/^[\d-]*$/.test(inputValue) || inputValue === '') {
                         handleInputChange(event);
                       }
                     }}
@@ -443,11 +441,11 @@ function Formulario() {
                       }
                     }}
                     className={`w-full border ${formData.academicTitleEmpty ? 'border-red-500' : 'border-gray-300'} rounded-md py-1 px-3 text-green-700`}
-                  />
+                    maxLength="100" />
                 </div>
 
                 <div className="flex items-center">
-                  <label htmlFor="institutionalPhone" className="mr-2">Télefono Institucional:</label>
+                  <label htmlFor="institutionalPhone" className="mr-2">Teléfono Institucional:</label>
                   <input
                     type="text"
                     id="institutionalPhone"
@@ -455,11 +453,12 @@ function Formulario() {
                     value={formData.institutionalPhone}
                     onChange={(event) => {
                       const inputValue = event.target.value;
-                      if (/^[0-9]*$/.test(inputValue) || inputValue === '') {
+                      if (/^[\d()\[\]-]*$/.test(inputValue) || inputValue === '') {
                         handleInputChange(event);
                       }
                     }}
                     className={`w-full p-2 ${formData.institutionalPhoneEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
+                    maxLength="15"
                   />
                 </div>
 
@@ -472,16 +471,16 @@ function Formulario() {
                     value={formData.email}
                     onChange={(event) => {
                       const inputValue = event.target.value;
-                      if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
+                      if (inputValue.length <= 150) {
                         handleInputChange(event);
                       }
                     }}
+                    maxLength="150"
                     className={`w-full p-2 ${formData.emailEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
-
                 <div className="flex items-center">
-                  <label htmlFor="esigefActivity" className="mr-2">esigefActivity:</label>
+                  <label htmlFor="esigefActivity" className="mr-2">Actividad Esigef:</label>
                   <input
                     type="text"
                     id="esigefActivity"
@@ -489,16 +488,16 @@ function Formulario() {
                     value={formData.esigefActivity}
                     onChange={(event) => {
                       const inputValue = event.target.value;
-                      if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
+                      if (/^[a-zA-Z0-9\s]*$/.test(inputValue) || inputValue === '') {
                         handleInputChange(event);
                       }
                     }}
-                    className={`w-full p-2 ${formData.esigefActivityEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
+                    maxLength="50" className={`w-full p-2 ${formData.esigefActivityEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
 
                 <div className="flex items-center">
-                  <label htmlFor="salary" className="mr-2">salary:</label>
+                  <label htmlFor="salary" className="mr-2">Salario:</label>
                   <input
                     type="text"
                     id="salary"
@@ -506,15 +505,17 @@ function Formulario() {
                     value={formData.salary}
                     onChange={(event) => {
                       const inputValue = event.target.value;
-                      if (/^[0-9]*$/.test(inputValue) || inputValue === '') {
+                      if (/^[0-9.]*$/.test(inputValue) || inputValue === '') {
                         handleInputChange(event);
                       }
                     }}
                     className={`w-full p-2 ${formData.salaryEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
+                    maxLength="8"
                   />
                 </div>
 
 
+                {/*Eliminar*/}
                 <div className="flex items-center">
                   <label htmlFor="password" className="mr-2">Contraseña:</label>
                   <input
@@ -531,9 +532,10 @@ function Formulario() {
                     className={`w-full p-2 ${formData.passwordEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   />
                 </div>
+                {/*Eliminar */}
 
                 <div className="flex items-center">
-                  <label htmlFor="returnedMigrant" className="mr-2">returnedMigrant:</label>
+                  <label htmlFor="returnedMigrant" className="mr-2">Migrante Retornado:</label>
                   <input
                     type="text"
                     id="returnedMigrant"
@@ -546,7 +548,7 @@ function Formulario() {
                       }
                     }}
                     className={`w-full p-2 ${formData.returnedMigrantEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
-                  />
+                    maxLength="2" />
                 </div>
 
               </div>
@@ -730,7 +732,7 @@ function Formulario() {
               <div class="text-black font-semibold font-sans grid grid-cols-1 grid-rows-1 gap-4">
 
                 <div className="flex items-center">
-                  <label htmlFor="unit" className="mr-2">Unit:</label>
+                  <label htmlFor="unit" className="mr-2">Unidad:</label>
                   <select
                     id="unit"
                     name="unit"
@@ -747,7 +749,7 @@ function Formulario() {
 
 
                 <div className="flex items-center">
-                  <label htmlFor="management" className="mr-2">Management:</label>
+                  <label htmlFor="management" className="mr-2">Gestión:</label>
                   <select
                     id="management"
                     name="management"
@@ -774,17 +776,17 @@ function Formulario() {
               <div class="text-black font-semibold font-sans grid grid-cols-2 grid-rows-2 gap-4">
 
                 <div className="flex items-center">
-                  <label htmlFor="area" className="mr-2">Sub Área:</label>
+                  <label htmlFor="subarea" className="mr-2">Sub Área:</label>
                   <select
-                    id="area"
-                    name="area"
-                    value={formData.area}
+                    id="subarea"
+                    name="subarea"
+                    value={formData.subarea}
                     onChange={handleInputChange}
-                    className={`w-full p-2 ${formData.areaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
+                    className={`w-full p-2 ${formData.subareaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700 py-1 px-3`}
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                    {subArea.map((area) => (
-                      <option key={area.id} value={area.id} className="whitespace-nowrap">{area.name}</option>
+                    {subArea.map((subarea) => (
+                      <option key={subarea.id} value={subarea.id} className="whitespace-nowrap">{subarea.name}</option>
                     ))}
                   </select>
                 </div>
@@ -816,7 +818,7 @@ function Formulario() {
                   >
                     <option value="" className="whitespace-nowrap">Seleccione...</option>
                     {localidadAso.map((associated_location) => (
-                      <option key={associated_location.id} value={associated_location.id} className="whitespace-nowrap">{associated_location.name}</option>
+                      <option key={associated_location.id} value={associated_location.id} className="whitespace-nowrap">{associated_location.acronym}</option>
                     ))}
                   </select>
                 </div>
