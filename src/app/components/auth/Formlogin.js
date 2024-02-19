@@ -22,7 +22,7 @@ export default function FormLogin({handleIsLogin, userLogin,handleErrorLogin}){
     }
 
     const redirect = () => {
-        navigate('/users'); // Redirect to the specified route
+        navigate('/personal'); // Redirect to the specified route
     }
 
     return (

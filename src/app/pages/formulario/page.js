@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import axios from 'axios';
 import Button from "@mui/material/Button";
+import Layout from "@/app/layout/Layout";
 
 
 function Formulario() {
@@ -298,7 +299,7 @@ function Formulario() {
 
 
   return (
-
+<Layout>
     <div className='bg-gradient-to-r from-slate-900 via-green-900 to-slate-900'>
 
       {/* Este div de abajo contiene todo el formulario Ingresar PEI */}
@@ -856,6 +857,7 @@ function Formulario() {
         </div>
       </div>
     </div>
+</Layout>
   );
 }
 

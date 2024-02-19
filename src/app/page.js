@@ -5,7 +5,6 @@ import Auth from "@/app/pages/login/page";
 import UserList from "@/app/pages/userList/Page";
 import {useEffect, useState} from "react";
 import Formulario from "@/app/pages/formulario/page";
-import Layout from "@/app/layout/Layout"
 import Dashboard from "@/app/pages/dashboard/page";
 
 
