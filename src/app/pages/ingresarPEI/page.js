@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState } from 'react';
-import Topbar from '@/app/components/Topbar';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
@@ -81,8 +80,6 @@ function ingresarPei() {
     return (
 
         <div>
-            {/* El div de arriba, contiene el topbar */}
-            <Topbar></Topbar>
             {/* Este div de abajo contiene todo el formulario Ingresar PEI */}
             <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-slate-900 via-green-900 to-slate-900" >
                 <div className="w-full md:w-1/2 shadow-md p-4 border-4 mt-4 bg-gray-100 border md:shadow-2xl md:shadow-stone-500 rounded-lg">
