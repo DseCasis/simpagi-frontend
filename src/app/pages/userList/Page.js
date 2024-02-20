@@ -60,9 +60,13 @@ export default function UserList() {
                 text: 'El archivo se ha subido con éxito.',
             }).then(() => {
                 // Recargar la página
-                window.location.reload();
+                redirect();
             });
         };
+
+        const redirect = () => {
+            navigate('/personal'); // Redirect to the specified route
+        }
     };
     useEffect(() => {
         setIsLoad(true)
