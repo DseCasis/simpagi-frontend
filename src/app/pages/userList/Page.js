@@ -160,14 +160,14 @@ export default function UserList() {
 
                         </nav>
                         <h2 className="my-4 text-4xl font-semibold dark:text-gray-400">
-                            Lista de Usuarios
+                            Lista del Personal
                         </h2>
                         <div className="relative flex justify-between">
                             <button
                                 className="mt-8 flex items-center justify-start py-3 px-2 text-white dark:text-gray-200 bg-green-400 dark:bg-green-500 rounded-lg shadow"
                                 onClick={() => navigate('/AgregarPersonal')}
                             >
-                                <span>Agregar Usuario</span>
+                                <span>Agregar Personal</span>
                                 <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                                     <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
                                 </svg>
@@ -242,7 +242,7 @@ export default function UserList() {
                             </div>
 
                             <div className="col-span-1 flex items-center">
-                                <span className="ml-24" onClick={() => handleSort('email')}>Email</span>
+                                <span className="ml-24" onClick={() => handleSort('email')}>Correo Electrónico</span>
                                 {/* Icono para indicar el estado de ordenamiento */}
                                 {sortConfig && sortConfig.key === 'email' && (
                                     <svg

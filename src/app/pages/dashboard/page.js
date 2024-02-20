@@ -9,9 +9,20 @@ export default function Dashboard(){
 
     return (
         <Layout>
-            <BarChart></BarChart>
-            <PieCharts></PieCharts>
-            <ForenCharts></ForenCharts>
+            <div className="h-screen p-5">
+                <div className="flex items-center justify-around">
+                    <div className=""> 
+                        <BarChart></BarChart>
+                        
+                    </div>
+                    <div className="">
+                        <PieCharts></PieCharts>
+                    </div>
+                    <div>
+                        <ForenCharts></ForenCharts>
+                    </div>
+                </div>
+            </div>
         </Layout>
     );
 }
