@@ -33,11 +33,7 @@ export const getUsers =()=>{
 }
 
 export const updateUser =(user)=>{
-    const request = axios.put(`${URL_USERS}-update`,user,{
-        headers:{
-            Authorization: token
-        }
-    })
+    const request = axios.put(`${URL_USERS}-update`,user)
     return request.then(response=>response.data)
 }
 

@@ -21,6 +21,7 @@ export default function Auth({userLogin}) {
   }
 
   return (
+    <Layout>
       <div className="flex flex-wrap min-h-screen w-full content-center justify-center py-10 bg-gradient-to-r from-slate-900 via-green-900 to-slate-900">
         <div className="w-2/4 h-5/6 flex justify-center border-2 rounded-md border md:shadow-2xl md:shadow-stone-500 bg-gray-200">
               {isLogin ? (
@@ -36,5 +37,6 @@ export default function Auth({userLogin}) {
               )}
           </div>
       </div>
+    </Layout>  
   )
 }

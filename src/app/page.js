@@ -1,6 +1,6 @@
 "use client"
 
-import {BrowserRouter, Routes as RouteGroup, Route, Link} from "react-router-dom";
+import {BrowserRouter, Routes as RouteGroup, Route} from "react-router-dom";
 import Auth from "@/app/pages/login/page";
 import UserList from "@/app/pages/userList/Page";
 import {useEffect, useState} from "react";
