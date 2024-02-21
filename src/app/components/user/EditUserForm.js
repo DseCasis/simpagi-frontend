@@ -8,8 +8,7 @@ import Button from "@mui/material/Button";
 import Layout from "@/app/layout/Layout";
 
 
-function Formulario() {
-
+function UpdateForm() {
   const initialState = {
     dni: '',
     name: '',
@@ -57,6 +56,7 @@ function Formulario() {
   const [gestion, setGestion] = useState([]);
   const [areaTa, setAreaTa] = useState([]);
   const [subArea, setSubArea] = useState([]);
+  
   useEffect(() => {
     // 1er solicitud Axios
     axios.get('http://127.0.0.1:8000/api/academics')
@@ -842,4 +842,4 @@ function Formulario() {
   );
 }
 
-export default Formulario;
+export default UpdateForm;

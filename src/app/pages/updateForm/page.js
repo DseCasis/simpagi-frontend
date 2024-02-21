@@ -8,8 +8,7 @@ import Button from "@mui/material/Button";
 import Layout from "@/app/layout/Layout";
 
 
-function Formulario() {
-
+function UpdateForm() {
   const initialState = {
     dni: '',
     name: '',
@@ -57,6 +56,7 @@ function Formulario() {
   const [gestion, setGestion] = useState([]);
   const [areaTa, setAreaTa] = useState([]);
   const [subArea, setSubArea] = useState([]);
+  const [ShouldUpdate, setShouldUpdate] = useState(false);
   useEffect(() => {
     // 1er solicitud Axios
     axios.get('http://127.0.0.1:8000/api/academics')
@@ -238,7 +238,7 @@ function Formulario() {
     return Object.values(camposVacios).some((campoVacio) => campoVacio);
   };
 
-  const handleSubmit = (event) => {
+  const handleUpdate = (event) => {
     event.preventDefault();
 
     // Validación de campos
@@ -254,28 +254,30 @@ function Formulario() {
 
     //Confirmación antes de enviar
     Swal.fire({
-      title: '¿Estás seguro de enviar?',
+      title: '¿Estás seguro de actualizar los datos??',
       text: '¡Una vez hecho esto no se puede revertir!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Si, envíalo!',
-      cancelButtonText: 'Cancelar',
+      cancelButtonText: 'No, Cancelar!',
     }).then((result) => {
       if (result.isConfirmed) {
         // Enviar datos al servidor o realizar otras acciones
-        axios.post('http://127.0.0.1:8000/api/users', formData)
+        axios.put('http://127.0.0.1:8000/api/users', formData)
           .then(response => {
             console.log('Respuesta del servidor:', response.data);
             // Mostrar mensaje de éxito con SweetAlert2
             Swal.fire({
-              title: '¡Enviado!',
-              text: 'Tu archivo se ha enviado.',
-              icon: 'success',
-            });
+                title: '¡Usuario actualizado!',
+                text: 'Los datos del usuario se han actualizado correctamente.',
+                icon: 'success',
+              });
             // Reiniciar el estado del formulario después de enviar
             setFormData(initialState);
+            setShouldUpdate(true);
+
           })
           .catch(error => {
             console.error('Error al enviar el formulario:', error);
@@ -314,7 +316,7 @@ function Formulario() {
           {/*Aqui cierra el código de la línea de Excel*/}
 
           <div className="">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleUpdate}>
 
               <div className="shadow-md p-4 border-4 border-green-800 border md:shadow-1xl md:shadow-stone-700 rounded-lg mt-4 bg-gray-100">
                 <div className="text-black font-semibold font-sans grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
@@ -817,7 +819,7 @@ function Formulario() {
                 <div class="flex justify-center">
                   <button
                     type="submit"
-                    onClick={handleSubmit}
+                    onClick={handleUpdate}
                     className="w-full md:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded md:mr-4"
                   >
                     Aceptar
@@ -842,4 +844,4 @@ function Formulario() {
   );
 }
 
-export default Formulario;
+export default UpdateForm;

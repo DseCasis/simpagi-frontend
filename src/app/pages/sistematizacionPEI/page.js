@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Topbar from '@/app/components/Topbar';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import axios from 'axios';
 
 function sistematizacionPei() {
     const initialState = {
@@ -18,8 +19,8 @@ function sistematizacionPei() {
         actividad: '',
         resultadoEsp: '',
         unidad: '',
-        meta:'',
-        anio:'',
+        meta: '',
+        anio: '',
         control: '',
         fondos: '',
         presupuesto: '',
@@ -32,84 +33,116 @@ function sistematizacionPei() {
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
-      };
+    };
 
 
 
-      const validarCampos = () => {
+    const validarCampos = () => {
         const camposVacios = {
-          estacionEmpty: formData.estacion.trim() === '',
-          programaDepEmpty: formData.programaDep.trim() === '',
-          rubroEmpty: formData.rubro.trim() === '',
-          liderNombreEmpty: formData.liderNombre.trim() === '',
-          areaEmpty: formData.area.trim() === '',
-          lineaEmpty: formData.linea.trim() === '',
-          objetivoEmpty: formData.objetivo.trim() === '',
-          indicadorResultadoEmpty: formData.indicadorResultado.trim() === '',
-          actividadEmpty: formData.actividad.trim() === '',
-          resultadoEspEmpty: formData.resultadoEsp.trim() === '',
-          unidadEmpty: formData.unidad.trim() === '',
-          metaEmpty: formData.meta.trim() === '',
-          anioEmpty: formData.anio.trim() === '',
-          controlEmpty: formData.control.trim() === '',
-          fondosEmpty: formData.fondos.trim() === '',
-          presupuestoEmpty: formData.presupuesto.trim() === '',
-          provinciaEmpty: formData.provincia.trim() === '',
+            estacionEmpty: formData.estacion.trim() === '',
+            programaDepEmpty: formData.programaDep.trim() === '',
+            rubroEmpty: formData.rubro.trim() === '',
+            liderNombreEmpty: formData.liderNombre.trim() === '',
+            areaEmpty: formData.area.trim() === '',
+            lineaEmpty: formData.linea.trim() === '',
+            objetivoEmpty: formData.objetivo.trim() === '',
+            indicadorResultadoEmpty: formData.indicadorResultado.trim() === '',
+            actividadEmpty: formData.actividad.trim() === '',
+            resultadoEspEmpty: formData.resultadoEsp.trim() === '',
+            unidadEmpty: formData.unidad.trim() === '',
+            metaEmpty: formData.meta.trim() === '',
+            anioEmpty: formData.anio.trim() === '',
+            controlEmpty: formData.control.trim() === '',
+            fondosEmpty: formData.fondos.trim() === '',
+            presupuestoEmpty: formData.presupuesto.trim() === '',
+            provinciaEmpty: formData.provincia.trim() === '',
         };
-    
-        setFormData({
-          ...formData,
-          ...camposVacios,
-        });
-    
-        return Object.values(camposVacios).some((campoVacio) => campoVacio);
-      };
 
-      const handleSubmit = (event) => {
+        setFormData({
+            ...formData,
+            ...camposVacios,
+        });
+
+        return Object.values(camposVacios).some((campoVacio) => campoVacio);
+    };
+
+    ///Cargar Datos
+    const [provincia, setProvincia] = useState([]);
+
+    useEffect(() => {
+        // 1er solicitud Axios
+        axios.get('http://127.0.0.1:8000/api/provinces')
+            .then(response => {
+                const provincias = response.data;
+                setProvincia(provincias);
+            })
+            .catch(error => {
+                console.error('Error al obtener otra data:', error);
+            });
+    }, []);
+
+    const handleSubmit = (event) => {
         event.preventDefault();
-    
+
         // Validación de campos
         if (validarCampos()) {
-          // Mostrar mensaje de error con SweetAlert2
-          Swal.fire({
-            title: 'Error',
-            text: 'Por favor, completa todos los campos.',
-            icon: 'error',
-          });
-          return;
-        }
-    
-        // Confirmación antes de enviar
-        Swal.fire({
-          title: '¿Estás seguro de enviar?',
-          text: '¡Una vez hecho esto no se puede revertir!',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Si, envíalo!',
-          cancelButtonText: 'Cancelar',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // Enviar datos al servidor o realizar otras acciones
+            // Mostrar mensaje de error con SweetAlert2
             Swal.fire({
-              title: '¡Enviado!',
-              text: 'Tu archivo se ha enviado.',
-              icon: 'success',
+                title: 'Error',
+                text: 'Por favor, completa todos los campos.',
+                icon: 'error',
             });
-            // Reiniciar el estado del formulario después de enviar
-            setFormData(initialState);
-          }
+            return;
+        }
+
+        //Confirmación antes de enviar
+        Swal.fire({
+            title: '¿Estás seguro de enviar?',
+            text: '¡Una vez hecho esto no se puede revertir!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, envíalo!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                // Enviar datos al servidor o realizar otras acciones
+                //Evento POST
+                axios.post('http://127.0.0.1:8000/api/users', formData)
+                    .then(response => {
+                        console.log('Respuesta del servidor:', response.data);
+                        // Mostrar mensaje de éxito con SweetAlert2
+                        Swal.fire({
+                            title: '¡Enviado!',
+                            text: 'Tu archivo se ha enviado.',
+                            icon: 'success',
+                        });
+                        // Reiniciar el estado del formulario después de enviar
+                        setFormData(initialState);
+                    })
+                    .catch(error => {
+                        console.error('Error al enviar el formulario:', error);
+                        // Mostrar mensaje de error con SweetAlert2
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Ocurrió un error al enviar el formulario.',
+                            icon: 'error',
+                        });
+                    });
+            }
         });
-      };
-      const handlereject = () => {
+    };
+    const handlereject = () => {
         // Rechazar el formulario y reiniciar el estado
         Swal.fire({
-          title: 'Formulario eliminado',
-          icon: 'info',
+            title: 'Formulario eliminado',
+            icon: 'info',
         });
         setFormData(initialState);
-      };
+    };
+
 
     return (
 
@@ -122,8 +155,8 @@ function sistematizacionPei() {
                     <form onSubmit={handleSubmit}>
                         <div className='text-3xl text-green-600 text-center font-semibold font-sans'>Ingresar Objetivo PEI</div>
                         <div className="grid grid-cols-5 md:grid-cols-2 gap-4 mt-4">
-                            
-                        <div className="flex items-center">
+
+                            <div className="flex items-center">
                                 <label htmlFor="estacion" className="mr-2 text-green-500">Estación:</label>
                                 <select
                                     id="estacion"
@@ -187,39 +220,41 @@ function sistematizacionPei() {
                                 </select>
                             </div>
 
-                            <div className="flex items-center col-span-2 mt-">
-                                <label htmlFor="liderNombre" className="mr-2 text-green-500">Lider:</label>
-                                <input
-                                    type="text"
+
+                            <div className="flex items-center col-span-2">
+                                <label htmlFor="liderNombre" className="mr-2 text-green-500">Líder</label>
+                                <select
                                     id="liderNombre"
                                     name="liderNombre"
                                     value={formData.liderNombre}
-                                    onChange={(event) => {
-                                        const inputValue = event.target.value;
-                                        if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
-                                            handleInputChange(event);
-                                        }
-                                    }}
-                                    className={`w-full border ${formData.liderNombreEmpty ? 'border-red-500' : 'border-gray-300'} rounded-md py-1 px-3 text-green-700`}
-                                />
+                                    onChange={handleInputChange}
+                                    className={`w-full p-2 ${formData.liderNombreEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
+                                >
+                                    <option value="" className="whitespace-nowrap">Seleccione...</option>
+                                    <option value="areaUno" className="whitespace-nowrap">Ejemplo 1</option>
+                                    <option value="areaDos" className="whitespace-nowrap">Ejemplo 2</option>
+                                    {/* Opciones del select */}
+                                </select>
                             </div>
 
-                            <div className="flex items-center col-span-2 mt-">
-                                <label htmlFor="linea" className="mr-2 text-green-500">Línea:</label>
-                                <input
-                                    type="text"
+
+                            <div className="flex items-center col-span-2">
+                                <label htmlFor="linea" className="mr-2 text-green-500">Línea</label>
+                                <select
                                     id="linea"
                                     name="linea"
                                     value={formData.linea}
-                                    onChange={(event) => {
-                                        const inputValue = event.target.value;
-                                        if (/^[a-zA-Z\s]*$/.test(inputValue) || inputValue === '') {
-                                            handleInputChange(event);
-                                        }
-                                    }}
-                                    className={`w-full border ${formData.lineaEmpty ? 'border-red-500' : 'border-gray-300'} rounded-md py-1 px-3 text-green-700`}
-                                />
+                                    onChange={handleInputChange}
+                                    className={`w-full p-2 ${formData.lineaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
+                                >
+                                    <option value="" className="whitespace-nowrap">Seleccione...</option>
+                                    <option value="areaUno" className="whitespace-nowrap">Ejemplo 1</option>
+                                    <option value="areaDos" className="whitespace-nowrap">Ejemplo 2</option>
+                                    {/* Opciones del select */}
+                                </select>
                             </div>
+
+
 
                             <div className="flex items-center col-span-2">
                                 <label htmlFor="objetivo" className="mr-2 text-green-500">Objetivo:</label>
@@ -321,7 +356,7 @@ function sistematizacionPei() {
                                     {/* Opciones del select */}
                                 </select>
                             </div>
-                            
+
                             <div className="flex items-center">
                                 <label htmlFor="control" className="mr-2 text-green-500">Control:</label>
                                 <select
@@ -337,8 +372,8 @@ function sistematizacionPei() {
                                     {/* Opciones del select */}
                                 </select>
                             </div>
-                           
-                           
+
+
                             <div className="flex items-center">
                                 <label htmlFor="fondos" className="mr-2 text-green-500">Fondos:</label>
                                 <select
@@ -354,7 +389,7 @@ function sistematizacionPei() {
                                     {/* Opciones del select */}
                                 </select>
                             </div>
-                           
+
 
                             <div className="flex items-center">
                                 <label htmlFor="presupuesto" className="mr-2 text-green-500">Presupuesto:</label>
@@ -366,9 +401,9 @@ function sistematizacionPei() {
                                     onChange={(event) => {
                                         const inputValue = event.target.value;
                                         if (/^[0-9]*$/.test(inputValue) || inputValue === '') {
-                                          handleInputChange(event);
+                                            handleInputChange(event);
                                         }
-                                      }}
+                                    }}
                                     className={`w-full border ${formData.presupuestoEmpty ? 'border-red-500' : 'border-gray-300'} rounded-md py-1 px-3 text-green-700`}
                                 />
                             </div>
@@ -389,12 +424,8 @@ function sistematizacionPei() {
                                     {/* Opciones del select */}
                                 </select>
                             </div>
-                            
-                           
 
-                           
 
-                          
                             <div className="col-span-2 flex items-center mx-auto">
                                 <label htmlFor="provincia" className="mr-2 text-green-500">Provincia:</label>
                                 <select
@@ -405,9 +436,9 @@ function sistematizacionPei() {
                                     className={`w-full p-2 ${formData.provinciaEmpty ? 'border-red-500' : 'border-gray-300'} border rounded text-green-700`}
                                 >
                                     <option value="" className="whitespace-nowrap">Seleccione...</option>
-                                    <option value="provinciaUno" className="whitespace-nowrap">Ejemplo 1</option>
-                                    <option value="provinciaDos" className="whitespace-nowrap">Ejemplo 2</option>
-                                    {/* Opciones del select */}
+                                    {provincia.map((provincia) => (
+                                        <option key={provincia.id} value={provincia.id} className="whitespace-nowrap">{provincia.name}</option>
+                                    ))}
                                 </select>
                             </div>
 
