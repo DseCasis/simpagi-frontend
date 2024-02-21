@@ -1,14 +1,15 @@
 "use client"
 
 import React from "react";
-import exel from "./pages/exel/page";
-import Login from "./pages/login/page"
-
-export default function Home() {
+import UserList from "./pages/userList/Page";
 
 
-    
-        
-            <Login></Login>
-  
+export default function home() {
+
+
+    return (
+        <div>
+            <UserList></UserList>
+        </div>
+    )
 }

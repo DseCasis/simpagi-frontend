@@ -2,7 +2,7 @@ import React from "react";
 import Button from '@mui/material/Button';
 
 export default function SideBar() {
-  return (
+    return (
 <div className="flex min-h-screen">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
     
